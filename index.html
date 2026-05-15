@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BNB Success — Full Lead to Sale Flowchart v3</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  background:#08090d;
+  color:#e2e8f0;
+  font-family:'Segoe UI',system-ui,sans-serif;
+  padding:32px 20px 80px;
+  min-width:1600px;
+}
+
+h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bottom:4px; }
+.subtitle { text-align:center; color:#64748b; font-size:11px; margin-bottom:28px; }
+
+/* ── LEGEND ── */
+.legend { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:30px; }
+.li { background:#101520; border:1px solid #1e2535; border-radius:4px; padding:4px 9px; font-size:10px; color:#94a3b8; }
+.li strong { color:#e2e8f0; }
+
+/* ── TRACK LABELS ── */
+.track-header {
+  display:grid;
+  grid-template-columns:130px 1fr 1fr;
+  gap:0;
+  margin-bottom:8px;
+  padding:0;
+}
+.track-spacer {}
+.track-badge {
+  text-align:center; font-size:11px; font-weight:800;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:8px 12px; border-radius:6px; margin:0 4px;
+}
+.track-r2r  { background:rgba(22,163,74,.15); color:#4ade80; border:1px solid #16a34a; }
+.track-co   { background:rgba(234,88,12,.15);  color:#fb923c; border:1px solid #ea580c; }
+
+/* ── DUAL TRACK PHASE ROW ── */
+.phase-row {
+  display:grid;
+  grid-template-columns:130px 1fr 1fr;
+  gap:0;
+  margin-bottom:2px;
+}
+
+/* Single-span phases */
+.phase-row.full {
+  grid-template-columns:130px 1fr;
+}
+.phase-row.full .phase-body { grid-column:1; }
+
+/* ── PHASE LABEL ── */
+.phase-label {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:14px 6px;
+  font-size:9.5px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase;
+  color:#fff; border-radius:8px 0 0 8px; line-height:1.5;
+  align-self:stretch;
+}
+
+/* ── PHASE BODY ── */
+.phase-body {
+  padding:15px 16px;
+  border-left:3px solid;
+  border-radius:0 8px 8px 0;
+  margin:0 3px;
+}
+.phase-body.left  { border-radius:0 0 0 0; border-right:1px solid #1e2535; }
+.phase-body.right { border-radius:0 8px 8px 0; }
+.phase-body.full-span { border-radius:0 8px 8px 0; }
+
+/* Colors */
+.p-entry .phase-label   { background:#4f46e5; }
+.p-entry .phase-body    { border-color:#4f46e5; background:rgba(79,70,229,.05); }
+.p-ads .phase-label     { background:#7c3aed; }
+.p-ads .phase-body      { border-color:#7c3aed; background:rgba(124,58,237,.05); }
+.p-funnel .phase-label  { background:#0ea5e9; }
+.p-funnel .phase-body   { border-color:#0ea5e9; background:rgba(14,165,233,.05); }
+.p-qualify .phase-label { background:#d97706; }
+.p-qualify .phase-body  { border-color:#d97706; background:rgba(217,119,6,.05); }
+.p-setter .phase-label  { background:#0369a1; }
+.p-setter .phase-body.left  { border-color:#0369a1; background:rgba(3,105,161,.05); }
+.p-setter .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-book .phase-label    { background:#059669; }
+.p-book .phase-body.left  { border-color:#059669; background:rgba(5,150,105,.05); }
+.p-book .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-show .phase-label    { background:#db2777; }
+.p-show .phase-body.left  { border-color:#db2777; background:rgba(219,39,119,.05); }
+.p-show .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.04); }
+.p-call .phase-label    { background:#ea580c; }
+.p-call .phase-body.left  { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-call .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-close .phase-label   { background:#16a34a; }
+.p-close .phase-body.left  { border-color:#16a34a; background:rgba(22,163,74,.05); }
+.p-close .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-onboard .phase-label { background:#4f46e5; }
+.p-onboard .phase-body.left  { border-color:#4f46e5; background:rgba(79,70,229,.05); }
+.p-onboard .phase-body.right { border-color:#ea580c; background:rgba(234,88,12,.05); }
+.p-reactivate .phase-label { background:#dc2626; }
+.p-reactivate .phase-body { border-color:#dc2626; background:rgba(220,38,38,.05); }
+
+/* ── VERTICAL CONNECTOR ── */
+.vconn { display:grid; grid-template-columns:130px 1fr; height:28px; }
+.vconn-spacer {}
+.vconn-line {
+  display:flex; align-items:center; padding:0 0 0 26px; position:relative;
+}
+.vconn-line::before { content:''; display:block; width:2px; height:28px; background:linear-gradient(180deg,#2d3748,#1a202c); }
+.vconn-line::after { content:'▼'; position:absolute; left:20px; bottom:-4px; color:#374151; font-size:10px; }
+
+/* ── SECTION HDR ── */
+.shdr {
+  width:100%; font-size:9.5px; font-weight:800; letter-spacing:1.5px;
+  text-transform:uppercase; color:#475569;
+  border-bottom:1px solid #1e2535; padding-bottom:3px; margin-bottom:8px;
+}
+
+/* ── NODE ── */
+.node { border-radius:7px; padding:10px 12px; min-width:160px; max-width:220px; font-size:10.5px; }
+.n-platform { background:#0c1422; border:1px solid #1a2840; }
+.n-action   { background:#0c1a10; border:1px solid #18301a; }
+.n-trigger  { background:#1a1408; border:1px solid #3a2808; }
+.n-decision { background:#140c20; border:1px solid #281840; }
+.n-alert    { background:#180a0a; border:1px solid #381414; }
+.n-good     { background:#0a1a0e; border:1px solid #124020; }
+.n-bad      { background:#180a0a; border:1px solid #401212; }
+.n-cohost   { background:#1a0e04; border:1px solid #4a2800; }
+
+.ntitle { font-weight:700; font-size:11px; margin-bottom:5px; color:#f1f5f9; display:flex; align-items:center; gap:4px; }
+.nbody  { color:#94a3b8; line-height:1.5; font-size:10px; }
+
+/* ── BADGES ── */
+.badge {
+  display:inline-block; font-size:8px; font-weight:800;
+  letter-spacing:.3px; padding:1px 5px; border-radius:3px;
+  margin:1px 1px 0 0; text-transform:uppercase; vertical-align:middle;
+}
+.b-meta    { background:#1a3a6b; color:#60a5fa; }
+.b-tiktok  { background:#0a2525; color:#2dd4bf; }
+.b-ghl     { background:#0a2010; color:#4ade80; }
+.b-hyros   { background:#2a0a0a; color:#f87171; }
+.b-stripe  { background:#12103a; color:#a78bfa; }
+.b-whop    { background:#1a2a0a; color:#bef264; }
+.b-type    { background:#2a100a; color:#fb923c; }
+.b-cal     { background:#0a2222; color:#22d3ee; }
+.b-email   { background:#2a2200; color:#facc15; }
+.b-sms     { background:#0a2210; color:#86efac; }
+.b-supa    { background:#0a0e2a; color:#818cf8; }
+.b-fath    { background:#1a0a2a; color:#e879f9; }
+.b-vturb   { background:#181818; color:#a1a1aa; }
+.b-xero    { background:#002a20; color:#34d399; }
+.b-ava     { background:#2a1200; color:#fb923c; }
+.b-slack   { background:#12102a; color:#c084fc; }
+.b-air     { background:#0a1a2a; color:#7dd3fc; }
+.b-iclosed { background:#0e1a0e; color:#bef264; }
+.b-skool   { background:#2a1a00; color:#fcd34d; }
+.b-discord { background:#0e0e2a; color:#818cf8; }
+.b-cohost  { background:#2a1200; color:#fb923c; }
+
+/* ── TRIGGER CHIP ── */
+.trig {
+  display:inline-block; font-size:8px; font-weight:800;
+  background:#2a1800; color:#fbbf24; border:1px solid #7c4a00;
+  padding:1.5px 6px; border-radius:3px; letter-spacing:.3px; text-transform:uppercase;
+  margin:2px 2px 0 0;
+}
+.trig-ghl  { background:#0a2010; color:#4ade80;  border-color:#155a2a; }
+.trig-time { background:#0a1a2a; color:#38bdf8;  border-color:#0e4070; }
+.trig-pay  { background:#1a0a2a; color:#c084fc;  border-color:#4a1a70; }
+.trig-no   { background:#2a0a0a; color:#f87171;  border-color:#7a1010; }
+.trig-res  { background:#0a1a2a; color:#38bdf8;  border-color:#0e3a6a; }
+
+/* ── SIGNAL LINE ── */
+.sig { display:block; font-size:10px; color:#475569; margin-top:3px; padding-left:10px; position:relative; }
+.sig::before { content:'→'; position:absolute; left:0; color:#374151; }
+
+/* ── FORK ── */
+.fork { display:flex; gap:8px; width:100%; margin-top:10px; }
+.fb { flex:1; border-radius:6px; padding:9px 11px; font-size:10px; }
+.fb-yes   { background:#051408; border:1px dashed #1a5a2a; }
+.fb-no    { background:#140505; border:1px dashed #5a1a1a; }
+.fb-dq    { background:#141005; border:1px dashed #7a5000; }
+.fb-co    { background:#140a00; border:1px dashed #7a3a00; }
+.fb-fu    { background:#050e14; border:1px dashed #0e4060; }
+.fb-res   { background:#050a14; border:1px dashed #0e3050; }
+.flabel   { font-weight:800; font-size:8.5px; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; display:block; }
+.fb-yes  .flabel { color:#4ade80; }
+.fb-no   .flabel { color:#f87171; }
+.fb-dq   .flabel { color:#fb923c; }
+.fb-co   .flabel { color:#f97316; }
+.fb-fu   .flabel { color:#38bdf8; }
+.fb-res  .flabel { color:#7dd3fc; }
+
+/* ── NODES ROW ── */
+.nodes { display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; }
+
+/* ── INLINE ARROW ── */
+.arr { color:#374151; font-size:16px; padding:0 2px; align-self:center; flex-shrink:0; }
+
+/* ── AUTO BLOCK ── */
+.ab {
+  margin-top:12px; border-radius:7px; padding:12px 14px;
+}
+.ab-sms     { background:#041208; border:1px solid #0d3a18; }
+.ab-email   { background:#141200; border:1px solid #444000; }
+.ab-slack   { background:#09071a; border:1px solid #221e5a; }
+.ab-ava     { background:#140a00; border:1px solid #5a3000; }
+.ab-iclosed { background:#09130a; border:1px solid #24470a; }
+.ab-cohost  { background:#1a0e00; border:1px solid #6a3800; }
+
+.ab-title { font-size:9.5px; font-weight:800; margin-bottom:7px; letter-spacing:.4px; }
+.ab-sms   .ab-title { color:#86efac; }
+.ab-email .ab-title { color:#facc15; }
+.ab-slack .ab-title { color:#c084fc; }
+.ab-ava   .ab-title { color:#fb923c; }
+.ab-iclosed .ab-title { color:#bef264; }
+.ab-cohost .ab-title { color:#fcd34d; }
+
+.sq { display:flex; align-items:baseline; gap:6px; font-size:9.5px; color:#64748b; padding:2.5px 0; border-bottom:1px solid rgba(255,255,255,.02); }
+.sq:last-child { border-bottom:none; }
+.sq-t { color:#38bdf8; font-weight:700; min-width:110px; flex-shrink:0; font-size:9px; }
+.sq-tl { display:inline-block; font-size:7.5px; font-weight:800; background:#0a1a2a; color:#38bdf8; border:1px solid #0e3a60; padding:1px 4px; border-radius:3px; margin-right:3px; text-transform:uppercase; }
+
+/* ── STATE MATRIX ── */
+.state-matrix { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:10px; }
+.state-card { border-radius:6px; padding:9px 11px; font-size:9.5px; }
+.sc-r2r    { background:#0a1a0e; border:1px solid #16a34a; }
+.sc-co     { background:#1a0e04; border:1px solid #ea580c; }
+.sc-either { background:#0e0e1a; border:1px solid #4f46e5; }
+.sc-title  { font-weight:800; font-size:10px; margin-bottom:4px; }
+.sc-r2r  .sc-title { color:#4ade80; }
+.sc-co   .sc-title { color:#fb923c; }
+.sc-either .sc-title { color:#818cf8; }
+
+/* ── TRACK DIVIDER ── */
+.track-divider {
+  display:grid; grid-template-columns:130px 1fr 1fr; gap:0; margin:3px 0;
+}
+.td-space {}
+.td-r2r { background:rgba(22,163,74,.08); border:1px solid rgba(22,163,74,.2); border-radius:4px; margin:0 3px; padding:4px 10px; font-size:9px; font-weight:800; color:#4ade80; letter-spacing:1px; text-transform:uppercase; text-align:center; }
+.td-co  { background:rgba(234,88,12,.08); border:1px solid rgba(234,88,12,.2); border-radius:4px; margin:0 3px; padding:4px 10px; font-size:9px; font-weight:800; color:#fb923c; letter-spacing:1px; text-transform:uppercase; text-align:center; }
+
+/* ── EDGE CASE BLOCKS ── */
+.edge-block {
+  background:#0a0c12; border:1px solid #1e2535; border-radius:8px; padding:14px 16px; margin-top:10px;
+}
+.edge-title { font-size:10px; font-weight:800; color:#e2e8f0; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.edge-grid  { display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:9.5px; color:#64748b; }
+.edge-col   { background:#08090f; border-radius:5px; padding:8px 10px; border:1px solid #14182a; }
+
+/* ── INT PANEL ── */
+.int-panel { background:#0a0d14; border:1px solid #1e2535; border-radius:8px; padding:18px; margin-top:36px; }
+.int-title  { font-size:12px; font-weight:800; color:#fff; margin-bottom:12px; }
+.int-grid   { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:8px; }
+.int-item   { background:#07090e; border-radius:6px; padding:10px 12px; border:1px solid #141922; }
+.int-ttl    { font-size:10px; font-weight:700; color:#e2e8f0; margin-bottom:3px; }
+.int-desc   { font-size:9px; color:#64748b; line-height:1.5; }
+.int-arr    { display:inline-block; font-size:8px; background:#141922; padding:1px 5px; border-radius:3px; color:#94a3b8; margin-top:3px; }
+
+/* ── CLOSER GRID ── */
+.closer-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:8px; font-size:9.5px; }
+.cg-item { background:#080e10; border:1px solid #0e2030; border-radius:5px; padding:7px 10px; }
+.cg-title { font-weight:700; color:#22d3ee; margin-bottom:3px; font-size:9px; }
+
+/* grp badges */
+.grp { display:inline-block; font-size:8px; font-weight:800; padding:1px 5px; border-radius:3px; margin:1px; }
+.ga { background:#1a0a2a; color:#c084fc; }
+.gb { background:#0a1a2a; color:#60a5fa; }
+.gc { background:#0a2a10; color:#4ade80; }
+
+/* phase number label */
+.pnum { font-size:15px; margin-bottom:2px; }
+</style>
+</head>
+<body>
+
+<h1>🏠 BNB Success — Full Lead-to-Sale Flowchart · Both Tracks</h1>
+<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v3 May 2026</p>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="li">🟣 <strong>Meta/IG</strong></div>
+  <div class="li">🔵 <strong>TikTok</strong></div>
+  <div class="li">🟢 <strong>GHL CRM</strong></div>
+  <div class="li">🔴 <strong>Hyros</strong></div>
+  <div class="li">🟠 <strong>Typeform</strong></div>
+  <div class="li">🩵 <strong>Calendly</strong></div>
+  <div class="li">🟡 <strong>Vturb</strong></div>
+  <div class="li">💜 <strong>iClosed</strong></div>
+  <div class="li">🟤 <strong>Stripe</strong></div>
+  <div class="li">🟩 <strong>Whop</strong> (co-host payments)</div>
+  <div class="li">💚 <strong>Xero</strong></div>
+  <div class="li">🟦 <strong>Supabase</strong></div>
+  <div class="li">🪻 <strong>Fathom</strong></div>
+  <div class="li">📋 <strong>Airtable</strong> EOD</div>
+  <div class="li">🏫 <strong>Skool</strong> (co-host community)</div>
+  <div class="li">💬 <strong>Discord</strong> (co-host)</div>
+  <div class="li">🤖 <strong>Ava</strong></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 1 — ADS + TRAFFIC (FULL WIDTH) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row full p-ads">
+  <div class="phase-label"><div class="pnum">📢</div>Phase 1<br>Ad<br>Exposure</div>
+  <div class="phase-body full-span">
+    <div class="nodes">
+      <div class="shdr">Traffic Sources — Both tracks start here. Same ads feed both funnels.</div>
+
+      <div class="node n-platform">
+        <div class="ntitle">📘 Meta Ads (FB/IG)</div>
+        <div class="nbody">
+          <span class="badge b-meta">META ADS MANAGER</span><br>
+          Jordan's content boosted as paid video. Broad + Lookalikes + Retargeting.<br>
+          <span class="trig">TRIGGER: Ad Click</span><br>
+          <span class="sig">Pixel ViewContent fires on page load</span>
+          <span class="sig">Hyros token injected into URL params</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🎵 TikTok Ads</div>
+        <div class="nbody">
+          <span class="badge b-tiktok">TIKTOK ADS</span><br>
+          @jorpham short-form, same funnel destination.<br>
+          <span class="trig">TRIGGER: Ad Click</span><br>
+          <span class="sig">TikTok Pixel ViewContent fires</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">📊 Hyros Attribution</div>
+        <div class="nbody">
+          <span class="badge b-hyros">HYROS</span><br>
+          Click source, ad set, creative captured. Unique token assigned per session. Follows lead all the way to payment on either track (Stripe or Whop).<br>
+          <span class="sig">Token stored cookie + URL param</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 2 — FUNNEL PAGE + VSL (FULL WIDTH) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row full p-funnel">
+  <div class="phase-label"><div class="pnum">🎬</div>Phase 2<br>Funnel Page<br>&amp; VSL</div>
+  <div class="phase-body full-span">
+    <div class="nodes">
+      <div class="shdr">Main R2R Landing Page — VSL plays, lead decides to apply</div>
+
+      <div class="node n-action">
+        <div class="ntitle">🖥️ R2R Landing Page</div>
+        <div class="nbody">
+          Headline + Vturb VSL above fold. CTA: "Apply Now".<br>
+          <span class="trig">TRIGGER: Page Load</span><br>
+          <span class="sig">Meta + TikTok ViewContent pixels fire</span>
+          <span class="sig">Hyros session activated</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🎥 Vturb VSL (R2R)</div>
+        <div class="nbody">
+          <span class="badge b-vturb">VTURB</span><br>
+          Jordan talking head. Apply CTA unlocks at ~70% watch.<br>
+          <span class="trig">TRIGGER: 70% Watch Depth</span><br>
+          <span class="sig">Apply button appears on player</span>
+          <span class="sig">Vturb logs watch depth per session</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-decision">
+        <div class="ntitle">🤔 Did they click Apply?</div>
+        <div class="nbody">Watches VSL → clicks CTA or bounces.</div>
+      </div>
+    </div>
+    <div class="fork">
+      <div class="fb fb-yes">
+        <span class="flabel">✅ Clicked Apply → Phase 3 Typeform</span>
+        Proceeds to qualification application →
+      </div>
+      <div class="fb fb-no" style="flex:1.5">
+        <span class="flabel">❌ Bounced / Partial Watch</span>
+        <span class="trig trig-no">TRIGGER: No submit + session ended</span><br>
+        <span class="badge b-meta">META</span> added to "VSL View No Action" custom audience<br>
+        <span class="badge b-tiktok">TIKTOK</span> pixel audience updated<br>
+        → Re-targeted with testimonial / objection-busting creative<br>
+        → 3–7 day window → re-enters Phase 2 if clicked
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 3 — APPLICATION + QUALIFY (FULL → SPLITS HERE) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row full p-qualify">
+  <div class="phase-label"><div class="pnum">📋</div>Phase 3<br>Application<br>&amp; Qualify<br><span style="font-size:8px;color:#fbbf24">↕ SPLIT POINT</span></div>
+  <div class="phase-body full-span">
+    <div class="nodes">
+      <div class="shdr">Typeform application — this is where the two tracks diverge based on capital + location</div>
+
+      <div class="node n-platform">
+        <div class="ntitle">📝 Typeform Application</div>
+        <div class="nbody">
+          <span class="badge b-type">TYPEFORM</span><br>
+          Name, email, phone, AUS/NZ state, capital available, employment, income, timeline, goals.<br>
+          <span class="trig">TRIGGER: Form Submitted</span><br>
+          <span class="sig">Webhook → GHL contact created</span>
+          <span class="sig">Hyros lead event fires</span>
+          <span class="sig">Meta Pixel Lead event fires</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🤖 GHL Contact Created</div>
+        <div class="nbody">
+          <span class="badge b-ghl">GHL CRM</span><br>
+          <span class="trig trig-ghl">GHL TRIGGER: Typeform webhook</span><br>
+          All fields mapped. Tagged: "Paid Ad Lead".<br>
+          Sales Pipeline → Stage: New Lead.<br>
+          <span class="sig">#new-leads Slack bot fires ASAP alert</span>
+          <span class="sig">GHL qualification logic runs immediately</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE MATRIX -->
+    <div style="margin-top:14px;">
+      <div class="shdr">🗺️ State-Based Routing Matrix — Which track each state goes to</div>
+      <div class="state-matrix">
+        <div class="state-card sc-r2r">
+          <div class="sc-title">✅ R2R TRACK ($15k)</div>
+          <strong>VIC, NSW, QLD</strong><br>
+          Capital ≥ $20k<br>
+          → Full mentorship program<br>
+          → Setter dials for close call booking
+        </div>
+        <div class="state-card sc-co">
+          <div class="sc-title">🟠 CO-HOST ONLY</div>
+          <strong>NT, ACT, TAS</strong><br>
+          Any capital level<br>
+          → R2R not viable these states<br>
+          → Co-host VSL page immediately<br>
+          → "No current plans to mentor R2R here" — Terence
+        </div>
+        <div class="state-card sc-co">
+          <div class="sc-title">🟠 CO-HOST (Capital DQ)</div>
+          <strong>Any state — Under $10k</strong><br>
+          Can't afford bond + rent + furniture<br>
+          → Co-host downsell VSL<br>
+          → Zero upfront cost model pitched
+        </div>
+        <div class="state-card sc-either">
+          <div class="sc-title">🔷 EITHER TRACK</div>
+          <strong>WA, SA + high intent</strong><br>
+          WA: co-host preferred OR R2R if intent very high<br>
+          Existing property owners → co-host recommended regardless<br>
+          → Setter/closer judgment call
+        </div>
+      </div>
+    </div>
+
+    <div class="fork" style="margin-top:14px;">
+      <div class="fb fb-yes" style="flex:2">
+        <span class="flabel">✅ QUALIFIED — VIC/NSW/QLD, Capital ≥ $20k</span>
+        GHL Stage: <em>Qualifying → New Lead</em><br>
+        <span class="trig trig-ghl">GHL TRIGGER: Capital field ≥ $20k AND state = VIC/NSW/QLD</span><br>
+        Setter outbound call initiated immediately via #new-leads alert<br>
+        → Advance to <strong>R2R Track: Phase 4a</strong>
+      </div>
+      <div class="fb fb-co" style="flex:2">
+        <span class="flabel">🟠 DOWNSELL — DQ'd: Capital &lt;$10k OR wrong state</span>
+        <span class="trig trig-ghl">GHL TRIGGER: Capital &lt;$10k OR state = NT/ACT/TAS</span><br>
+        GHL Stage: <em>Unqualified → Co-Host Pipeline</em><br>
+        Lead redirected to: <strong>cohost.bnbsuccess.com.au</strong><br>
+        Co-host VSL page loads (separate Vturb player)<br>
+        → Advance to <strong>Co-Host Track: Phase 4b</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRACK DIVIDER LABEL ROW -->
+<div style="height:14px;"></div>
+<div class="track-divider">
+  <div class="td-space"></div>
+  <div class="td-r2r">🏠 R2R TRACK — Rental Arbitrage $15,000 AUD</div>
+  <div class="td-co">🤝 CO-HOSTING DOWNSELL TRACK — $5,000 AUD</div>
+</div>
+<div style="height:4px;"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 4 — SETTER WORKFLOW (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-setter">
+  <div class="phase-label"><div class="pnum">📞</div>Phase 4<br>Setter /<br>Co-Host<br>VSL</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — Setter outbound call to book close call</div>
+    <div class="nodes">
+      <div class="node n-trigger">
+        <div class="ntitle">🔔 #new-leads Slack Alert</div>
+        <div class="nbody">
+          <span class="trig trig-ghl">GHL TRIGGER: Contact Created</span><br>
+          <span class="badge b-slack">SLACK #new-leads</span> "NEW PAID AD LEAD! CONTACT THEM ASAP!"<br>
+          Full details: name, email, phone, state, capital, occupation.
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">📱 Setter Dials (GHL Dialer)</div>
+        <div class="nbody">
+          <span class="badge b-ghl">GHL POWER DIALER</span><br>
+          Speed to lead: call within 5 min of alert.<br>
+          32–75 dials/day per setter. Pre-qual on call.<br>
+          <span class="sig">If no pickup: voicemail + auto-SMS fires</span>
+          <span class="sig">3 attempts over 3 days before archive</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fork">
+      <div class="fb fb-yes">
+        <span class="flabel">✅ Books Close Call</span>
+        <span class="grp ga">GROUP A</span><span class="grp gb">GROUP B</span><span class="grp gc">GROUP C</span><br>
+        Setter books on closer's Calendly<br>
+        GHL Stage → <em>Booked Appointment</em><br>
+        <span class="badge b-slack">SLACK #booked-call</span> fires<br>
+        → Phase 5 R2R sequences fire
+      </div>
+      <div class="fb fb-no">
+        <span class="flabel">❌ No Pickup / Not Interested</span>
+        3 attempts → <em>Archived</em><br>
+        DBR pipeline at 90 days<br>
+        Airtable EOD: "No Contact"
+      </div>
+    </div>
+
+    <!-- Setter EOD -->
+    <div class="ab ab-slack" style="margin-top:10px;">
+      <div class="ab-title">📋 Setter Airtable EOD (Daily → #setter-eod Slack)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">END OF DAY</span></span><span>Dials, Pickups, Conversations, Bookings logged. Airtable bot auto-posts to #setter-eod. Tony reviews.</span></div>
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — DQ'd lead hits the downsell VSL page</div>
+    <div class="nodes">
+      <div class="node n-cohost">
+        <div class="ntitle">🤝 Co-Host VSL Page</div>
+        <div class="nbody">
+          <span class="badge b-cohost">cohost.bnbsuccess.com.au</span><br>
+          VSL hook: <em>"We reviewed your application — we don't think you're a fit for R2R right now... but what if there's a strategy where you pay zero rent, zero bond, zero furniture?"</em><br>
+          Positions co-hosting as 50% of BNB's own portfolio.<br>
+          <span class="sig">Vturb player tracks watch depth</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-cohost">
+        <div class="ntitle">🎥 Vturb VSL (Co-Host)</div>
+        <div class="nbody">
+          <span class="badge b-vturb">VTURB</span><br>
+          ~4 min VSL. Explains co-hosting model:<br>
+          approach property owners → take over Airbnb ops → earn 15–25% gross revenue service fee.<br>
+          Zero upfront costs framing.<br>
+          CTA: "Book your 15-min Discovery Call" unlocks after watch threshold.
+        </div>
+      </div>
+    </div>
+    <div class="fork">
+      <div class="fb fb-yes">
+        <span class="flabel">✅ Books Discovery Call</span>
+        15-min triage call booked via Calendly<br>
+        <span class="trig trig-ghl">GHL TRIGGER: Co-Host Calendly booking</span><br>
+        GHL Co-Host Pipeline created<br>
+        <span class="badge b-slack">SLACK #cohost-booked-calls</span> fires<br>
+        → Phase 5 Co-Host sequences
+      </div>
+      <div class="fb fb-no">
+        <span class="flabel">❌ Bounced Off VSL Page</span>
+        Added to co-host retargeting audience<br>
+        Different creative: case study / objection-busting<br>
+        Email / SMS nurture sequence starts from GHL<br>
+        → Re-entry if clicked
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 5 — BOOKING SEQUENCES (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-book">
+  <div class="phase-label"><div class="pnum">📅</div>Phase 5<br>Booking<br>&amp; Show-Rate<br>Sequences</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — Full show-rate sequence fires on close call booking</div>
+
+    <div class="ab ab-slack">
+      <div class="ab-title">💬 SLACK #booked-call (fires immediately on booking)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">GHL TRIGGER</span>Appt Created</span><span>"New booked appointment (<span class="grp ga">A</span>/<span class="grp gb">B</span>/<span class="grp gc">C</span>)! Closer: [Name] · Setter: [Name] · Lead: [Name] · Time: [DateTime AEST] · Email · Phone"</span></div>
+    </div>
+
+    <div class="ab ab-sms" style="margin-top:8px;">
+      <div class="ab-title">📱 R2R SMS Sequence (GHL Automation — exact triggers)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TRIGGER</span>Booking T+0</span><span>Confirmation SMS: "Your strategy session with [Closer] is confirmed for [Date/Time AEST]. Here's what to prepare..."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>24h Before</span><span>"Your call is tomorrow at [Time]. Be in a quiet space. Have your questions ready about your first Airbnb property."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>2h Before</span><span>"Your call is in 2 hours. [Closer] is ready for you. Reply YES to confirm you'll be there."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>15min Before</span><span>"Your call starts in 15 minutes. Join link: [iClosed link]. Don't be late!"</span></div>
+      <div class="sq" style="color:#f87171;"><span class="sq-t"><span class="sq-tl" style="background:#2a0a0a;color:#f87171;border-color:#7a1010">NO SHOW</span>T+15 after</span><span>Closer marks No Show → rescue sequence fires (Phase 6)</span></div>
+      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>Lead reschedules</span><span>Calendly reschedule → GHL appointment updated → NEW sequences re-fire from T+0 on new time</span></div>
+    </div>
+
+    <div class="ab ab-email" style="margin-top:8px;">
+      <div class="ab-title">📧 R2R Email Sequence (GHL Automation)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TRIGGER</span>Booking T+0</span><span>Confirmation email. .ics calendar file. iClosed join link. What to prepare.</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>Day Before 8am</span><span>Mindset/prep email. "What top students did before their call." Case study teaser. Social proof video.</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>Morning of 7am</span><span>"What to expect on today's call." Objection pre-frames. Jordan video. "Investment decision, not a purchase."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>1h Before</span><span>Final reminder. iClosed join link + closer name.</span></div>
+      <div class="sq" style="color:#4ade80;"><span class="sq-t"><span class="sq-tl trig-ghl">STOP TRIGGER</span>Call Connected</span><span>All pending reminders cancelled when iClosed call status = connected</span></div>
+    </div>
+
+    <!-- Confirmation page -->
+    <div style="margin-top:10px; background:#050e14; border:1px solid #0e3050; border-radius:6px; padding:10px; font-size:10px; color:#64748b;">
+      <strong style="color:#22d3ee">✅ Confirmation Page (post-booking redirect)</strong><br>
+      3 framing videos · Gmail screenshot · testimonials · "this is an investment call" pre-frame<br>
+      <span class="badge b-meta">META PIXEL: Complete Registration (qualified page only)</span>
+      <span class="badge b-hyros">HYROS: Booked event logged</span>
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — Discovery call booking (15-min triage)</div>
+
+    <div class="ab ab-cohost">
+      <div class="ab-title">💬 SLACK #cohost-booked-calls (fires immediately)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">GHL TRIGGER</span>Co-Host Appt</span><span>"New co-host discovery call booked! · Closer: [Name] · Lead: [Name] · Time · Source: Downsell Funnel"</span></div>
+      <div class="sq"><span class="sq-t" style="color:#fb923c">Closers assigned</span><span>Luke Edwards, Cruz Oconnell, Toryn Huntley, Evan Ha, Bryan Goh, Dane Custer — triage/discovery closers</span></div>
+    </div>
+
+    <div class="ab ab-sms" style="margin-top:8px;">
+      <div class="ab-title">📱 Co-Host SMS Sequence (GHL — same automation logic)</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TRIGGER</span>Booking T+0</span><span>"Your free 15-min co-hosting discovery call is confirmed for [DateTime]. Here's what it covers: how to earn $3k–$10k/mo managing other people's Airbnbs."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>24h Before</span><span>Reminder + social proof. "This is how we built 50% of our portfolio without any upfront risk."</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>15min Before</span><span>Join link + "we'll be reviewing your specific state and situation on the call"</span></div>
+      <div class="sq" style="color:#f87171;"><span class="sq-t"><span class="sq-tl" style="background:#2a0a0a;color:#f87171;border-color:#7a1010">NO SHOW</span>T+15 after</span><span>Rescue SMS fires immediately (see Phase 6)</span></div>
+      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>Calendly reschedule</span><span>GHL appointment updated → sequences re-fire from T+0 on new time slot</span></div>
+    </div>
+
+    <div class="ab ab-email" style="margin-top:8px;">
+      <div class="ab-title">📧 Co-Host Email Sequence</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TRIGGER</span>Booking T+0</span><span>Confirmation + calendar invite + what the 15-min call covers + case study of a co-host earning on someone else's property.</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>Day Before</span><span>State-specific email: "Here's how co-hosting works in [State]" — compliance overview + earning potential.</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>Morning of</span><span>What to expect. "We'll look at your state, your situation, and map out whether co-hosting is your fastest path."</span></div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 6 — NO-SHOW / RESCHEDULE HANDLING (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-show">
+  <div class="phase-label"><div class="pnum">🚨</div>Phase 6<br>No Show<br>Reschedule<br>Handling</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — All edge cases for close call attendance</div>
+
+    <!-- NO SHOW -->
+    <div class="edge-block">
+      <div class="edge-title">❌ NO SHOW — Closer marks no show in iClosed</div>
+      <div class="edge-grid">
+        <div class="edge-col">
+          <span class="trig trig-ghl">GHL TRIGGER: Appointment Status → No Show (935fcf2e)</span><br><br>
+          <strong style="color:#86efac">SMS Rescue (immediate)</strong><br>
+          T+0: "We missed you — here's your rebook link [Calendly]"<br>
+          T+4h: Case study SMS. "Still thinking about Airbnb income?"<br>
+          Day 2: Testimonial SMS + urgency<br>
+          Day 4: "Last chance to rebook this week"
+        </div>
+        <div class="edge-col">
+          <strong style="color:#facc15">Email Rescue</strong><br>
+          T+0: Rebook email with Calendly link<br>
+          Day 2: Student success story email<br>
+          Day 5: "Your application is still open — but only for so long"<br><br>
+          <strong style="color:#c084fc">Slack → Setter Manual Outreach</strong><br>
+          <span class="badge b-slack">#sales-team alert</span> "No-show with [Closer] — setter call back now"<br>
+          Setter dials within 30 min via GHL dialer
+        </div>
+      </div>
+      <div style="margin-top:8px; font-size:9.5px; color:#64748b;">
+        <span class="trig trig-time">TIME-BASED: 7 days no response</span> → Stage: Triage No Show (4cbabee7) → Triage Pipeline<br>
+        <span class="trig trig-time">90 days no response</span> → DBR Pipeline (uMbWuCdWwgLQeulH1s5l) for reactivation campaign
+      </div>
+    </div>
+
+    <!-- RESCHEDULE -->
+    <div class="edge-block" style="margin-top:10px;">
+      <div class="edge-title">🔄 RESCHEDULE — Lead reschedules via Calendly</div>
+      <div style="font-size:9.5px; color:#64748b;">
+        <span class="trig trig-res">TRIGGER: Calendly reschedule event → GHL webhook</span><br>
+        GHL appointment updated with new date/time. All pending SMS/email sequences <strong>cancelled</strong>.<br>
+        New sequences re-fire from T+0 based on the new appointment time.<br>
+        Closer notified via <span class="badge b-slack">Slack #sales-team</span>: "[Lead] rescheduled to [New DateTime]"<br>
+        GHL Stage remains <em>Booked Appointment</em> (no regression).<br>
+        If rescheduled &gt;3 times → Setter manually reviews and may qualify further before re-booking.
+      </div>
+    </div>
+
+    <!-- CANCELLATION -->
+    <div class="edge-block" style="margin-top:10px;">
+      <div class="edge-title">🗑️ CANCELLATION — Lead cancels entirely</div>
+      <div style="font-size:9.5px; color:#64748b;">
+        <span class="trig trig-no">TRIGGER: Calendly cancellation → GHL webhook</span><br>
+        GHL Stage → <em>Triage No Show</em> or <em>No Show</em> depending on timing.<br>
+        <span class="badge b-slack">#no-show channel</span> alert fires: "Cancelled — Follow up with them ASAP!"<br>
+        Setter immediately assigned to call back and attempt rebook.<br>
+        If no contact within 7 days → Triage Pipeline → DBR at 90 days.
+      </div>
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — Edge cases for 15-min discovery call</div>
+
+    <!-- NO SHOW CO-HOST -->
+    <div class="edge-block" style="border-color:#3a1a00;">
+      <div class="edge-title" style="color:#fb923c;">❌ NO SHOW — Co-Host Discovery Call</div>
+      <div class="edge-grid">
+        <div class="edge-col" style="border-color:#1e1000;">
+          <span class="trig trig-ghl">GHL TRIGGER: Co-Host Appt Status → No Show</span><br><br>
+          <strong style="color:#86efac">SMS Rescue (immediate)</strong><br>
+          T+0: "We missed you! Rebook your free 15-min co-hosting call: [link]"<br>
+          T+4h: "Zero rent, zero bond — still curious? [rebook]"<br>
+          Day 3: Case study SMS of co-host in similar state
+        </div>
+        <div class="edge-col" style="border-color:#1e1000;">
+          <strong style="color:#facc15">Email Rescue</strong><br>
+          T+0: Rebook email with state-specific hook<br>
+          Day 2: "What a co-host in [State] earned their first month"<br><br>
+          <strong style="color:#c084fc">Slack Alert</strong><br>
+          <span class="badge b-slack">#cohost-booked-calls</span> cancellation: "Follow up with them ASAP!"<br>
+          Setter manually reassigns slot or re-contacts
+        </div>
+      </div>
+    </div>
+
+    <!-- RESCHEDULE CO-HOST -->
+    <div class="edge-block" style="margin-top:10px; border-color:#1a2a00;">
+      <div class="edge-title" style="color:#bef264;">🔄 RESCHEDULE — Co-Host Discovery Call</div>
+      <div style="font-size:9.5px; color:#64748b;">
+        <span class="trig trig-res">TRIGGER: Calendly reschedule → GHL Co-Host pipeline update</span><br>
+        New appointment time saved. All pending sequences cancelled + re-fired from T+0.<br>
+        Closer available check: <em>"anyone take a call rn from [closer]'s calendar?"</em> — handled manually via Slack if urgent.<br>
+        Terence may be added to WhatsApp conversation for complex state-based questions during reschedule window.
+      </div>
+    </div>
+
+    <!-- SPECIFIC STATES NOTE -->
+    <div class="edge-block" style="margin-top:10px; border-color:#1a2a0a;">
+      <div class="edge-title" style="color:#bef264;">🗺️ State-Specific Handling on Co-Host Discovery Calls</div>
+      <div style="font-size:9.5px; color:#64748b; display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+        <div style="background:#08100a; border:1px solid #14301a; border-radius:4px; padding:7px;">
+          <strong style="color:#4ade80">NT (Darwin)</strong><br>
+          Co-host service fee (15–25% gross) OR flat-fee setup ($1.5k–$3.5k consulting).<br>
+          If lead already has properties → push co-host, easier entry.<br>
+          Terence: "prefer co-hosting because it's easier for him"
+        </div>
+        <div style="background:#08100a; border:1px solid #14301a; border-radius:4px; padding:7px;">
+          <strong style="color:#4ade80">QLD / ACT</strong><br>
+          R2R legally difficult. Primary route: co-hosting.<br>
+          Full 14-module curriculum includes state-specific compliance for ACT/QLD.
+        </div>
+        <div style="background:#08100a; border:1px solid #14301a; border-radius:4px; padding:7px;">
+          <strong style="color:#4ade80">WA / SA</strong><br>
+          Setter/closer judgment call. WA: co-host preferred unless very high intent for R2R.<br>
+          Both tracks available — closer decides on discovery call.
+        </div>
+        <div style="background:#08100a; border:1px solid #14301a; border-radius:4px; padding:7px;">
+          <strong style="color:#4ade80">Existing Property Owners</strong><br>
+          Any state. Already have Airbnb leverage.<br>
+          Terence: "Prefer co-hosting because they already have properties."<br>
+          Push co-host regardless of capital.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 7 — SALES CALLS (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-call">
+  <div class="phase-label"><div class="pnum">📞</div>Phase 7<br>Sales<br>Calls</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — Close Call (iClosed · Fathom)</div>
+    <div class="nodes">
+      <div class="node n-platform">
+        <div class="ntitle">💜 iClosed — R2R Close Call</div>
+        <div class="nbody">
+          <span class="badge b-iclosed">iCLOSED</span><br>
+          Full sales call. 45–90 min. Lead + closer.<br>
+          Structure: Rapport → Discovery → Pitch → Offer → Close.<br>
+          Closer has GHL profile open. Closer custom field ID: wXuSRtl8pqoPDbLlpR7m.<br>
+          <span class="sig">Disposition logged post-call → GHL stage update</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🎙️ Fathom Recording</div>
+        <div class="nbody">
+          <span class="badge b-fath">FATHOM AI</span><br>
+          Auto-transcript + AI summary post-call. Key moments flagged: objections, close attempt.<br>
+          <span class="trig">TRIGGER: Call Ends</span><br>
+          <span class="sig">Ava pulls via Fathom API → #sales-intel</span>
+          <span class="sig">Closer scorecard updated in Supabase</span>
+        </div>
+      </div>
+    </div>
+    <div class="fork" style="margin-top:10px;">
+      <div class="fb fb-yes">
+        <span class="flabel">✅ Verbal Yes → Payment</span>
+        Stripe link sent on call → Phase 8
+      </div>
+      <div class="fb fb-fu">
+        <span class="flabel">🔁 Follow Up</span>
+        GHL Stage: <em>Follow Up Call</em> (918f7749)<br>
+        New call booked → sequences re-fire
+      </div>
+      <div class="fb fb-no">
+        <span class="flabel">❌ Lost</span>
+        Stage: <em>Lost Deal</em> (7820cc1d)<br>
+        90-day nurture → DBR
+      </div>
+    </div>
+    <div class="ab ab-ava" style="margin-top:8px;">
+      <div class="ab-title">🤖 Ava Post-Call Intel</div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">FATHOM API</span>post-call</span><span>Transcript pulled → call scored → #sales-intel Slack post → Tony alerted if below threshold</span></div>
+      <div class="sq"><span class="sq-t"><span class="sq-tl">AIRTABLE</span>same day</span><span>Closer EOD: scheduled calls, live calls, offers made, deposits, closes → auto-posted to #closer-eod</span></div>
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — 2-Stage call structure: Discovery → Deep Dive</div>
+
+    <div class="closer-grid">
+      <div class="cg-item">
+        <div class="cg-title">STAGE 1 — Discovery Call (15 min)</div>
+        <span class="badge b-iclosed">iCLOSED</span><br>
+        <span style="font-size:9.5px;color:#64748b;">
+          Closer triage: state, capital, current situation, goals.<br>
+          Confirms co-hosting fit. Gets commitment to Deep Dive.<br>
+          <strong>Closers:</strong> Luke Edwards, Cruz Oconnell, Toryn Huntley, Evan Ha, Bryan Goh, Dane Custer<br>
+          Source tagged: "Downsell Funnel" in GHL
+        </span>
+      </div>
+      <div class="cg-item">
+        <div class="cg-title">STAGE 2 — Deep Dive Call (Full Close)</div>
+        <span class="badge b-iclosed">iCLOSED</span><br>
+        <span style="font-size:9.5px;color:#64748b;">
+          Full sales pitch. Present $5,000 AUD co-host program.<br>
+          State-specific compliance + ROI explained.<br>
+          Terence involvement on complex state questions (via WhatsApp).<br>
+          <strong>Primary closer:</strong> Teejay Halkias for deep dives<br>
+          Terence available for Q&A escalation
+        </span>
+      </div>
+    </div>
+
+    <!-- Terence's involvement note -->
+    <div style="margin-top:10px; background:#100800; border:1px solid #3a2000; border-radius:6px; padding:10px; font-size:9.5px; color:#64748b;">
+      <strong style="color:#fcd34d">⚡ Terence Mok — Active in Co-Host Sales</strong><br>
+      "For any leads curious about co-hosting or pushed here as primary due to DQ — add me into any WhatsApp groups so I can pop in and build a database of common questions." — Terence, May 4<br>
+      Also offering: <strong>1-on-1 implementation call with Terence</strong> for founding cohort students who sign their first property before Aug 1, 2026.
+    </div>
+
+    <div class="fork" style="margin-top:10px;">
+      <div class="fb fb-yes">
+        <span class="flabel">✅ Verbal Yes</span>
+        Whop payment link sent → Phase 8 Co-Host
+      </div>
+      <div class="fb fb-fu">
+        <span class="flabel">🔁 Needs More Time</span>
+        Rebook Deep Dive → new sequences fire
+      </div>
+      <div class="fb fb-no">
+        <span class="flabel">❌ Not Interested</span>
+        GHL Co-Host Pipeline → Lost<br>
+        Long-tail email nurture starts
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 8 — CLOSE + PAYMENT (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-close">
+  <div class="phase-label"><div class="pnum">💰</div>Phase 8<br>Close<br>&amp; Payment</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — $15,000 AUD via Stripe</div>
+    <div class="nodes">
+      <div class="node n-good">
+        <div class="ntitle">💳 Stripe Payment</div>
+        <div class="nbody">
+          <span class="badge b-stripe">STRIPE</span><br>
+          Invoice / checkout link sent during call.<br>
+          Full pay: $15,000 AUD. Or payment plan (deposit + instalments).<br>
+          <span class="trig trig-pay">TRIGGER: payment_intent.succeeded webhook</span><br>
+          <span class="sig">GHL → Closed Deal stage (b658b849)</span>
+          <span class="sig">Hyros revenue event → ROAS attributed</span>
+          <span class="sig">Xero invoice auto-created</span>
+          <span class="sig">Slack #sales-transactions bot fires</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🤖 GHL — Closed Deal</div>
+        <div class="nbody">
+          <span class="badge b-ghl">GHL</span><br>
+          Stage: <strong>Closed Deal</strong><br>
+          Onboarding workflow fires immediately<br>
+          <span class="sig">Ava: commission calc → Slack #sales</span>
+          <span class="sig">Supabase: revenue event + cohort log</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — $5,000 AUD via Whop</div>
+    <div class="nodes">
+      <div class="node n-cohost">
+        <div class="ntitle">💳 Whop Payment</div>
+        <div class="nbody">
+          <span class="badge b-whop">WHOP</span><br>
+          Checkout link for $5,000 AUD sent during Deep Dive call.<br>
+          Payment plan available: 3x instalments.<br>
+          Bank transfer also accepted.<br>
+          <span class="trig trig-pay">TRIGGER: Whop payment confirmed</span><br>
+          <span class="sig">GHL Co-Host Pipeline → Closed stage</span>
+          <span class="sig">Hyros revenue event (co-host source)</span>
+          <span class="sig">Xero invoice created</span>
+          <span class="sig">Slack sale notification fires</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-platform">
+        <div class="ntitle">🤖 GHL — Co-Host Closed</div>
+        <div class="nbody">
+          <span class="badge b-ghl">GHL CO-HOST PIPELINE</span><br>
+          Stage: <strong>Closed</strong><br>
+          Co-host onboarding automation fires<br>
+          <span class="sig">Skool access provisioned</span>
+          <span class="sig">Discord invite sent</span>
+          <span class="sig">Supabase student record created</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:10px; background:#0a1000; border:1px solid #2a3a00; border-radius:6px; padding:10px; font-size:9.5px; color:#64748b;">
+      <strong style="color:#bef264">📊 Co-Host Pipeline MTD (May 1–13, 2026)</strong><br>
+      Discovery Calls booked: <strong>134</strong> · Deep Dive / Closer Calls: <strong>27</strong> · Total opps: <strong>161</strong><br>
+      Source tag on all bookings: "Downsell Funnel"
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 9 — ONBOARDING (DUAL TRACK) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row p-onboard">
+  <div class="phase-label"><div class="pnum">🚀</div>Phase 9<br>Onboarding</div>
+
+  <!-- R2R LEFT -->
+  <div class="phase-body left">
+    <div class="shdr">🏠 R2R — Onboarding to mentorship program</div>
+    <div style="font-size:10px; color:#94a3b8; line-height:1.7;">
+      <span class="trig trig-ghl">GHL TRIGGER: Closed Deal stage</span> → GHL Onboarding Pipeline (MZrnsqA5uMzxPOQcOY0R)<br>
+      Welcome SMS + email fires immediately<br>
+      Onboarding call booked (Calendly)<br>
+      Contract/agreement sent<br>
+      GHL Membership → Course portal access granted<br>
+      Community access granted (Hylo/Circle)<br>
+      Mentor assigned based on cohort<br>
+      Supabase student record created<br>
+      <strong>90-day guarantee clock starts</strong> — 2 properties live target<br><br>
+      <span class="trig trig-time">TIME-BASED: 45 days no progress</span> → Ava flags to mentor + #fulfilment-wins<br>
+      Milestone hit → posted to #fulfilment-wins · testimonial requested
+    </div>
+  </div>
+
+  <!-- CO-HOST RIGHT -->
+  <div class="phase-body right">
+    <div class="shdr" style="color:#fb923c;">🤝 CO-HOST — Onboarding to Skool + Discord</div>
+    <div style="font-size:10px; color:#94a3b8; line-height:1.7;">
+      <span class="trig trig-ghl">GHL TRIGGER: Co-Host Closed stage</span> → Onboarding automation fires<br>
+      Welcome SMS + email immediately<br><br>
+      <span class="badge b-skool">SKOOL</span> Access to <strong>skool.com/bnb-success-cohost-au</strong><br>
+      14 modules, self-paced<br>
+      <strong>Modules 8+ drip-fed for 2 weeks</strong> (prevents early refund requests)<br>
+      State-by-state curriculum (NSW, VIC, QLD, WA, SA, TAS, ACT, NT each covered)<br>
+      Templates, scripts, frameworks for outreach + ops<br><br>
+      <span class="badge b-discord">DISCORD</span> Private community access granted<br>
+      (Being actively populated as of May 2026 — founding cohort)<br><br>
+      <strong>Founding Cohort Bonus:</strong> 1-on-1 implementation call with Terence Mok if first property signed before Aug 1, 2026<br><br>
+      Supabase student record created · Ava monitors module completion<br>
+      Terence available for WhatsApp escalation on complex state questions
+    </div>
+  </div>
+</div>
+<div class="vconn"><div></div><div class="vconn-line"></div></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PHASE 10 — REACTIVATION (FULL WIDTH) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="phase-row full p-reactivate">
+  <div class="phase-label"><div class="pnum">🔁</div>Phase 10<br>Reactivation<br>&amp; Loops</div>
+  <div class="phase-body full-span">
+    <div class="nodes">
+      <div class="shdr">Every lead that didn't convert — reactivation loops for both tracks</div>
+
+      <div class="node n-action">
+        <div class="ntitle">🗄️ DBR Pipeline (Both Tracks)</div>
+        <div class="nbody">
+          <span class="badge b-ghl">GHL DBR (uMbWuCdWwgLQeulH1s5l)</span><br>
+          63 active DBR leads. Dormant 90+ days.<br>
+          <span class="trig trig-time">TIME-BASED: 90 days no activity</span><br>
+          Personalised re-engagement SMS + email.<br>
+          <span class="sig">Setter dials DBR leads in rotation</span>
+          <span class="sig">Ava drafts messages from original form answers</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-action">
+        <div class="ntitle">🎯 Retargeting Ads</div>
+        <div class="nbody">
+          <span class="badge b-meta">META</span><span class="badge b-tiktok">TIKTOK</span><br>
+          Lost / No Show / Cold tagged contacts → custom audience.<br>
+          Different creative per track: R2R or co-host framing.<br>
+          <span class="sig">Re-entry at Phase 2 if clicked</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-action">
+        <div class="ntitle">💰 Low Ticket → High Ticket</div>
+        <div class="nbody">
+          <span class="badge b-ghl">LOW TICKET (GYQFATxt13Y175MxRIfp)</span><br>
+          $347 AUD course buyers (92 existing).<br>
+          <span class="trig trig-time">TIME-BASED: 4–6 weeks post-purchase</span><br>
+          Upgrade pitch: R2R $15k OR co-host $5k depending on profile.<br>
+          <span class="sig">Books call → re-enters booking flow</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="node n-action">
+        <div class="ntitle">📧 Cold Archive Nurture</div>
+        <div class="nbody">
+          <span class="badge b-email">EMAIL</span><br>
+          9,115+ cold contacts.<br>
+          Monthly value email. Quarterly reactivation.<br>
+          <span class="trig trig-time">MONTHLY schedule</span><br>
+          <span class="sig">Re-engagement → setter call fired</span>
+          <span class="sig">"Re-engaged from cold" tag → Sales Pipeline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- FULL INTEGRATION MAP -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="int-panel">
+  <div class="int-title">🔗 Full Tech Stack Integration Map — All Data Flows (Both Tracks)</div>
+  <div class="int-grid">
+    <div class="int-item">
+      <div class="int-ttl">Typeform → GHL (Both tracks)</div>
+      <div class="int-desc">Form submit → webhook → GHL contact. All fields mapped. Qualification logic runs. Fires #new-leads (R2R) or routes to co-host VSL page (DQ).</div>
+      <span class="int-arr">POST webhook on submit → GHL API</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Calendly → GHL (R2R close + co-host discovery)</div>
+      <div class="int-desc">Booking confirmed → GHL appointment created. Stage updated. All show-rate SMS/email sequences triggered. Slack alert fires. Reschedule → sequences cancelled + restart.</div>
+      <span class="int-arr">Calendly webhook → GHL appointment API</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">iClosed → GHL (Call outcomes both tracks)</div>
+      <div class="int-desc">Call disposition → GHL stage update. Triggers relevant automation (close → onboarding / no show → rescue / follow up → new sequences). Closer custom field updated.</div>
+      <span class="int-arr">iClosed disposition → GHL webhook</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Fathom → Ava → Slack (R2R + co-host calls)</div>
+      <div class="int-desc">Call ends → Fathom generates transcript + summary → Ava pulls via Fathom API → scores quality → posts to #sales-intel → closer scorecard updated in Supabase.</div>
+      <span class="int-arr">Fathom API (X-Api-Key) → Ava → Slack webhook</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Stripe → GHL + Xero + Hyros (R2R)</div>
+      <div class="int-desc">payment_intent.succeeded → GHL Closed Deal → onboarding automation. Simultaneously: Xero invoice, Hyros revenue event, Slack #sales-transactions, Supabase log.</div>
+      <span class="int-arr">Stripe webhook → GHL + Xero + Hyros</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Whop → GHL + Xero + Hyros (Co-Host)</div>
+      <div class="int-desc">Whop payment confirmed → GHL Co-Host Pipeline closed → Skool access provisioned + Discord invite + Supabase record. Xero invoice created. Hyros co-host revenue event.</div>
+      <span class="int-arr">Whop webhook → GHL trigger</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">GHL → Slack (All notifications)</div>
+      <div class="int-desc">#new-leads (new lead ASAP), #booked-call (R2R booking), #cohost-booked-calls (co-host booking), #no-show (cancellations), #sales-transactions (closed deals), #closer-eod / #setter-eod (Airtable EOD).</div>
+      <span class="int-arr">GHL automation → Slack webhook per channel</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">GHL → Meta / TikTok Pixel (CAPI)</div>
+      <div class="int-desc">Server-side pixel events: Lead (form submit), Schedule (qualified R2R only), CompleteRegistration. Feed back to ad platforms to optimise delivery toward buyers on both tracks.</div>
+      <span class="int-arr">GHL → Meta CAPI + TikTok Events API</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Airtable EOD → Slack</div>
+      <div class="int-desc">Setter + Closer EOD form submit → Airtable automation → Slack bot posts to #setter-eod / #closer-eod. Tony reviews daily for coaching and capacity planning.</div>
+      <span class="int-arr">Airtable form → Slack webhook</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Whop → Skool (Co-Host Access)</div>
+      <div class="int-desc">Payment confirmed on Whop → Skool community access granted for bnb-success-cohost-au. Modules 1–7 immediate, modules 8–14 drip-fed over 2 weeks to prevent early refund requests.</div>
+      <span class="int-arr">Whop → Skool automation</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">Terence WhatsApp → Co-Host Sales Support</div>
+      <div class="int-desc">For DQ leads and complex state questions: setter/closer adds Terence into WhatsApp group. Terence handles live Q&A, builds FAQ database. Escalation channel for NT, ACT, WA edge cases.</div>
+      <span class="int-arr">Manual WhatsApp → Terence direct</span>
+    </div>
+    <div class="int-item">
+      <div class="int-ttl">GHL → Supabase (Data Warehouse — both tracks)</div>
+      <div class="int-desc">All key events from both pipelines logged: new lead, booked, no show, closed, lost. Powers Ava dashboards, cohort profitability, pipeline velocity, closer scorecard, ROAS by track.</div>
+      <span class="int-arr">GHL webhook → Supabase REST insert</span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI -->
+<div class="int-panel" style="margin-top:14px;">
+  <div class="int-title">📊 Key Metrics Tracked — Both Tracks</div>
+  <div class="int-grid">
+    <div class="int-item"><div class="int-ttl">R2R CPL / Cost Per Booked Call</div><div class="int-desc">Ad spend ÷ qualified Typeform submits (CPL) and ÷ booked close calls. Tracked per platform, campaign, creative. Source: Hyros + tracking sheet.</div></div>
+    <div class="int-item"><div class="int-ttl">Co-Host Discovery Call Volume</div><div class="int-desc">134 discovery calls booked May 1–13. 27 deep dive / closer calls. Source: GHL Co-Host Pipeline. Ava posts MTD update to Tony on request.</div></div>
+    <div class="int-item"><div class="int-ttl">Show Rate (Both Tracks)</div><div class="int-desc">Shown ÷ booked per pipeline. Target &gt;70%. GHL + iClosed disposition data. SMS/email sequences aim to hit this threshold.</div></div>
+    <div class="int-item"><div class="int-ttl">Close Rate by Closer (Both Tracks)</div><div class="int-desc">Closed ÷ shown per closer, per pipeline. Fathom + GHL + Airtable EOD. Ava posts weekly scorecard to Tony. Tony coaches from call recordings.</div></div>
+    <div class="int-item"><div class="int-ttl">Revenue by Track</div><div class="int-desc">R2R: $15k via Stripe. Co-Host: $5k via Whop. Both attributed in Hyros per original ad source. Xero reconciles. Ava runs monthly P&L split by track.</div></div>
+    <div class="int-item"><div class="int-ttl">DQ Rate → Co-Host Conversion</div><div class="int-desc">% of DQ'd R2R leads who go on to book a co-host discovery call. Ava tracks this flow in Supabase. Key metric for funnel yield optimisation.</div></div>
+    <div class="int-item"><div class="int-ttl">Pipeline Velocity</div><div class="int-desc">Avg days lead → closed, per track per stage. GHL + Supabase. Ava flags stale deals every 48h to Tony.</div></div>
+    <div class="int-item"><div class="int-ttl">Co-Host Student Milestones</div><div class="int-desc">First property signed before Aug 1 → Terence 1-on-1 bonus triggered. Tracked in Supabase + GHL onboarding pipeline. Ava monitors module completion.</div></div>
+  </div>
+</div>
+
+<p style="text-align:center;color:#1e2535;font-size:10px;margin-top:24px;padding-bottom:10px;">
+  BNB Success Internal Only · Ava · v3 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
+</p>
+
+</body>
+</html>

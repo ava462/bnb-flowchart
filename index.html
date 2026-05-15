@@ -279,7 +279,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 <body>
 
 <h1>🏠 BNB Success — Full Lead-to-Sale Flowchart · Both Tracks</h1>
-<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v4 May 2026</p>
+<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v4.1 May 2026 — incl. exact Zapier ZAP logic</p>
 
 <!-- LEGEND -->
 <div class="legend">
@@ -1121,9 +1121,33 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
   <div class="int-title">🔗 Full Tech Stack Integration Map — All Data Flows (Both Tracks)</div>
   <div class="int-grid">
     <div class="int-item">
-      <div class="int-ttl">iClosed → GHL via Zapier/Make (Both tracks)</div>
-      <div class="int-desc">Lead completes "Complete Quick Application" in iClosed → booking event triggers Zapier or Make → GHL contact created with all fields mapped. Qualification logic runs. Fires #new-leads (R2R) or routes to co-host VSL (DQ). No native iClosed→GHL integration; all bridged through Zapier (connected ✅) or Make (connected ✅).</div>
-      <span class="int-arr">iClosed booking webhook → Zapier/Make → GHL API</span>
+      <div class="int-ttl">iClosed → GHL via Zapier — Exact Zap Logic (74 Zaps Total)</div>
+      <div class="int-desc">
+        <strong style="color:#a78bfa">APPLICATION ZAPS (trigger: iClosed Contact by Status)</strong><br>
+        • Capital &lt;$10k → GHL Wf: "VSL iClosed Application → Put in Investment Pipeline (Under $10k)"<br>
+        • Capital $10k-$15k → GHL Wf: "VSL iClosed Application → Investment Pipeline ($10k-$15k)"<br>
+        • Capital $15k-$25k → GHL Wf: "VSL iClosed Application → Investment Pipeline ($15k-$25k)"<br>
+        • Capital $25k+ → GHL Wf: "VSL iClosed Application → Investment Pipeline ($25k+)"<br>
+        • Qualified but not booked → GHL Wf: "iClosed → Add to New Leads Pipeline"<br>
+        • Qualified didn't book → GHL Wf: "iClosed - Qualified → Email Nurture To Book"<br>
+        <br>
+        <strong style="color:#34d399">BOOKING CONFIRMED ZAPS (trigger: iClosed Call Booked)</strong><br>
+        • VSL Discovery Call → GHL Wf: "dc iclosed 2026 Triage Discovery Call | Booking Confirmed Flow" + tag: "reg discovery call booked iclosed"<br>
+        • Webinar Discovery Call → GHL Wf: "wdc iclosed 2026 Triage Discovery Call | Booking Confirmed Flow"<br>
+        • Deep Dive A (VSL) → GHL Wf: "iClosed - (Group A) Strategy Session | Booking Confirmed Flow"<br>
+        • Deep Dive B (VSL) → GHL Wf: "iClosed - (Group B) Strategy Session | Booking Confirmed Flow"<br>
+        • Deep Dive W-G (Webinar) → GHL Wf: "Webinar iClosed - (Group All) Strategy Session | Booking Confirmed Flow"<br>
+        • Co-Host Triage → GHL Wf: "BNB Co-Host - Triage Call | Booking Confirmed Flow"<br>
+        • Co-Host Closer → GHL Wf: "BNB Co-Host - Closer Call | Booking Confirmed Flow"<br>
+        • Pathway Triage → GHL Wf: "BNB Pathway Call | Booking Confirmed Flow"<br>
+        <br>
+        <strong style="color:#f87171">CANCELLATION ZAPS (trigger: iClosed Call Cancelled)</strong><br>
+        • Discovery/Closer cancelled → GHL Wf: "iClosed - Triage Call | Booking Cancelled"<br>
+        <br>
+        Each zap passes: First Name, Last Name, Phone, Email, State, Capital, Timeline, Job, Closer Name, Appointment Start Time.<br>
+        Zapier account: Terence Mok (TM). 74 total zaps. Account ID: 21670532.
+      </div>
+      <span class="int-arr">iClosed event → Zapier filter (event slug/name) → GHL LeadConnector "Add Lead to Workflow"</span>
     </div>
     <div class="int-item">
       <div class="int-ttl">iClosed → GHL → Slack (Booking + reschedule + no-show)</div>
@@ -1199,7 +1223,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 </div>
 
 <p style="text-align:center;color:#1e2535;font-size:10px;margin-top:24px;padding-bottom:10px;">
-  BNB Success Internal Only · Ava · v4 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
+  BNB Success Internal Only · Ava · v4.1 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
 </p>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BNB Success — Full Lead to Sale Flowchart v3</title>
+<title>BNB Success — Full Lead to Sale Flowchart v4</title>
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
 body {
@@ -279,7 +279,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 <body>
 
 <h1>🏠 BNB Success — Full Lead-to-Sale Flowchart · Both Tracks</h1>
-<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v3 May 2026</p>
+<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v4 May 2026</p>
 
 <!-- LEGEND -->
 <div class="legend">
@@ -287,10 +287,10 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
   <div class="li">🔵 <strong>TikTok</strong></div>
   <div class="li">🟢 <strong>GHL CRM</strong></div>
   <div class="li">🔴 <strong>Hyros</strong></div>
-  <div class="li">🟠 <strong>Typeform</strong></div>
-  <div class="li">🩵 <strong>Calendly</strong></div>
+  <div class="li">💜 <strong>iClosed</strong> (opt-in + scheduling)</div>
+  <div class="li">📞 <strong>Dialer.io</strong> (setter auto-dial)</div>
   <div class="li">🟡 <strong>Vturb</strong></div>
-  <div class="li">💜 <strong>iClosed</strong></div>
+  <div class="li">🔗 <strong>Zapier/Make</strong> (integration bridge)</div>
   <div class="li">🟤 <strong>Stripe</strong></div>
   <div class="li">🟩 <strong>Whop</strong> (co-host payments)</div>
   <div class="li">💚 <strong>Xero</strong></div>
@@ -384,8 +384,8 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     </div>
     <div class="fork">
       <div class="fb fb-yes">
-        <span class="flabel">✅ Clicked Apply → Phase 3 Typeform</span>
-        Proceeds to qualification application →
+        <span class="flabel">✅ Clicked Apply → Phase 3 iClosed Application</span>
+        Proceeds to "Complete Quick Application" (iClosed) →
       </div>
       <div class="fb fb-no" style="flex:1.5">
         <span class="flabel">❌ Bounced / Partial Watch</span>
@@ -408,17 +408,19 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
   <div class="phase-label"><div class="pnum">📋</div>Phase 3<br>Application<br>&amp; Qualify<br><span style="font-size:8px;color:#fbbf24">↕ SPLIT POINT</span></div>
   <div class="phase-body full-span">
     <div class="nodes">
-      <div class="shdr">Typeform application — this is where the two tracks diverge based on capital + location</div>
+      <div class="shdr">iClosed "Complete Quick Application" — 15-min intake form where the two tracks diverge based on capital + location</div>
 
       <div class="node n-platform">
-        <div class="ntitle">📝 Typeform Application</div>
+        <div class="ntitle">📝 iClosed Application (Quick Opt-In)</div>
         <div class="nbody">
-          <span class="badge b-type">TYPEFORM</span><br>
-          Name, email, phone, AUS/NZ state, capital available, employment, income, timeline, goals.<br>
-          <span class="trig">TRIGGER: Form Submitted</span><br>
-          <span class="sig">Webhook → GHL contact created</span>
-          <span class="sig">Hyros lead event fires</span>
+          <span class="badge b-iclosed" style="background:#6d28d9;color:#fff;border-radius:3px;padding:1px 5px;font-size:9px;font-weight:700;">iCLOSED</span><br>
+          Event: "Complete Quick Application" (15 min). Name, email, phone, AUS/NZ state, capital, employment, income, timeline, goals.<br>
+          <span class="trig">TRIGGER: Form Submitted (iClosed)</span><br>
+          <span class="sig">Zapier/Make: iClosed → GHL contact created</span>
+          <span class="sig">Hyros lead event fires (iClosed Hyros integration ✅)</span>
           <span class="sig">Meta Pixel Lead event fires</span>
+          <span class="sig">iClosed SMS Confirmation fires immediately (Workflow #6)</span>
+          <span class="sig">iClosed 24h / 1h / 5min email + SMS reminders scheduled (Workflows #5,#11,#12,#13,#14)</span>
         </div>
       </div>
       <div class="arr">→</div>
@@ -426,7 +428,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
         <div class="ntitle">🤖 GHL Contact Created</div>
         <div class="nbody">
           <span class="badge b-ghl">GHL CRM</span><br>
-          <span class="trig trig-ghl">GHL TRIGGER: Typeform webhook</span><br>
+          <span class="trig trig-ghl">GHL TRIGGER: Zapier/Make from iClosed booking event</span><br>
           All fields mapped. Tagged: "Paid Ad Lead".<br>
           Sales Pipeline → Stage: New Lead.<br>
           <span class="sig">#new-leads Slack bot fires ASAP alert</span>
@@ -521,24 +523,32 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
       </div>
       <div class="arr">→</div>
       <div class="node n-platform">
-        <div class="ntitle">📱 Setter Dials (GHL Dialer)</div>
+        <div class="ntitle">📱 Setter Dials (Dialer.io Auto-Dialer)</div>
         <div class="nbody">
-          <span class="badge b-ghl">GHL POWER DIALER</span><br>
-          Speed to lead: call within 5 min of alert.<br>
-          32–75 dials/day per setter. Pre-qual on call.<br>
-          <span class="sig">If no pickup: voicemail + auto-SMS fires</span>
-          <span class="sig">3 attempts over 3 days before archive</span>
+          <span class="badge" style="background:#f97316;color:#fff;border-radius:3px;padding:1px 5px;font-size:9px;font-weight:700;">DIALER.IO</span><br>
+          Lead pushed to <strong>CL-BNB-SUCCESS-NEW-LEADS-5538</strong> list via GHL webhook → Zapier/Make → Dialer.io API.<br>
+          <strong>Campaign Escalation:</strong><br>
+          ⚡ P1 (0–12h): 3 dials × 30min gaps — speed to lead<br>
+          🔁 P2 (12–36h): 3 dials × 90min gaps<br>
+          🔁 P3 (36h+): 14 dials × 5h10min gaps<br>
+          ⏳ Least Priority: continuous 2h until 7 dials or DQ<br>
+          Team: Danny Tran, Noah Furmston, Mason Ah Sam, Evan Ha, Bryan Goh, Luke Edwards, Toryn Huntley, Dane Custer<br>
+          Supervisor: Tony Nguyen<br>
+          <span class="sig">Dispositions: No Contact → Hangup Intro → Hangup Warm → F-Demo Booked ✅</span>
+          <span class="sig">DQ dispositions: DQ-BadFit, DQ-Financial, DQ-NotInterested, DQ-DNC</span>
         </div>
       </div>
     </div>
 
     <div class="fork">
       <div class="fb fb-yes">
-        <span class="flabel">✅ Books Close Call</span>
+        <span class="flabel">✅ Books Close Call (Disposition: F-Demo Booked)</span>
         <span class="grp ga">GROUP A</span><span class="grp gb">GROUP B</span><span class="grp gc">GROUP C</span><br>
-        Setter books on closer's Calendly<br>
-        GHL Stage → <em>Booked Appointment</em><br>
+        Setter books via iClosed: <strong>Deep Dive Call (A/B/C)</strong> or <strong>Discovery Call</strong> (60 or 15 min)<br>
+        Dialer.io disposition → <em>"F - Demo Booked"</em><br>
+        iClosed → GHL via Zapier/Make: Stage → <em>Booked Appointment</em><br>
         <span class="badge b-slack">SLACK #booked-call</span> fires<br>
+        Google Calendar sync: iClosed pushes to closer's Google Calendar ✅<br>
         → Phase 5 R2R sequences fire
       </div>
       <div class="fb fb-no">
@@ -584,10 +594,11 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     <div class="fork">
       <div class="fb fb-yes">
         <span class="flabel">✅ Books Discovery Call</span>
-        15-min triage call booked via Calendly<br>
-        <span class="trig trig-ghl">GHL TRIGGER: Co-Host Calendly booking</span><br>
+        15-min triage call booked via iClosed: <strong>"Co-Host Discovery Call"</strong><br>
+        <span class="trig trig-ghl">GHL TRIGGER: Zapier/Make from iClosed Co-Host booking</span><br>
         GHL Co-Host Pipeline created<br>
         <span class="badge b-slack">SLACK #cohost-booked-calls</span> fires<br>
+        iClosed Workflow #10: Co-host Discovery Call SMS Confirmation fires immediately<br>
         → Phase 5 Co-Host sequences
       </div>
       <div class="fb fb-no">
@@ -625,7 +636,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
       <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>2h Before</span><span>"Your call is in 2 hours. [Closer] is ready for you. Reply YES to confirm you'll be there."</span></div>
       <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>15min Before</span><span>"Your call starts in 15 minutes. Join link: [iClosed link]. Don't be late!"</span></div>
       <div class="sq" style="color:#f87171;"><span class="sq-t"><span class="sq-tl" style="background:#2a0a0a;color:#f87171;border-color:#7a1010">NO SHOW</span>T+15 after</span><span>Closer marks No Show → rescue sequence fires (Phase 6)</span></div>
-      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>Lead reschedules</span><span>Calendly reschedule → GHL appointment updated → NEW sequences re-fire from T+0 on new time</span></div>
+      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>Lead reschedules</span><span>iClosed reschedule → Zapier/Make → GHL appointment updated → NEW sequences re-fire from T+0 on new time</span></div>
     </div>
 
     <div class="ab ab-email" style="margin-top:8px;">
@@ -662,7 +673,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
       <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>24h Before</span><span>Reminder + social proof. "This is how we built 50% of our portfolio without any upfront risk."</span></div>
       <div class="sq"><span class="sq-t"><span class="sq-tl">TIME</span>15min Before</span><span>Join link + "we'll be reviewing your specific state and situation on the call"</span></div>
       <div class="sq" style="color:#f87171;"><span class="sq-t"><span class="sq-tl" style="background:#2a0a0a;color:#f87171;border-color:#7a1010">NO SHOW</span>T+15 after</span><span>Rescue SMS fires immediately (see Phase 6)</span></div>
-      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>Calendly reschedule</span><span>GHL appointment updated → sequences re-fire from T+0 on new time slot</span></div>
+      <div class="sq" style="color:#38bdf8;"><span class="sq-t"><span class="sq-tl" style="background:#0a1a2a;color:#38bdf8;border-color:#0e3a60">RESCHEDULED</span>iClosed reschedule → Zapier/Make</span><span>GHL appointment updated → sequences re-fire from T+0 on new time slot</span></div>
     </div>
 
     <div class="ab ab-email" style="margin-top:8px;">
@@ -693,19 +704,19 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
         <div class="edge-col">
           <span class="trig trig-ghl">GHL TRIGGER: Appointment Status → No Show (935fcf2e)</span><br><br>
           <strong style="color:#86efac">SMS Rescue (immediate)</strong><br>
-          T+0: "We missed you — here's your rebook link [Calendly]"<br>
+          T+0: "We missed you — here's your rebook link" (iClosed rebook link)<br>
           T+4h: Case study SMS. "Still thinking about Airbnb income?"<br>
           Day 2: Testimonial SMS + urgency<br>
           Day 4: "Last chance to rebook this week"
         </div>
         <div class="edge-col">
           <strong style="color:#facc15">Email Rescue</strong><br>
-          T+0: Rebook email with Calendly link<br>
+          T+0: Rebook email with iClosed booking link<br>
           Day 2: Student success story email<br>
           Day 5: "Your application is still open — but only for so long"<br><br>
           <strong style="color:#c084fc">Slack → Setter Manual Outreach</strong><br>
           <span class="badge b-slack">#sales-team alert</span> "No-show with [Closer] — setter call back now"<br>
-          Setter dials within 30 min via GHL dialer
+          Setter dials within 30 min via Dialer.io (P1 campaign — re-queued as hot lead)
         </div>
       </div>
       <div style="margin-top:8px; font-size:9.5px; color:#64748b;">
@@ -716,9 +727,9 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 
     <!-- RESCHEDULE -->
     <div class="edge-block" style="margin-top:10px;">
-      <div class="edge-title">🔄 RESCHEDULE — Lead reschedules via Calendly</div>
+      <div class="edge-title">🔄 RESCHEDULE — Lead reschedules via iClosed</div>
       <div style="font-size:9.5px; color:#64748b;">
-        <span class="trig trig-res">TRIGGER: Calendly reschedule event → GHL webhook</span><br>
+        <span class="trig trig-res">TRIGGER: iClosed reschedule event → Zapier/Make → GHL webhook</span><br>
         GHL appointment updated with new date/time. All pending SMS/email sequences <strong>cancelled</strong>.<br>
         New sequences re-fire from T+0 based on the new appointment time.<br>
         Closer notified via <span class="badge b-slack">Slack #sales-team</span>: "[Lead] rescheduled to [New DateTime]"<br>
@@ -731,7 +742,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     <div class="edge-block" style="margin-top:10px;">
       <div class="edge-title">🗑️ CANCELLATION — Lead cancels entirely</div>
       <div style="font-size:9.5px; color:#64748b;">
-        <span class="trig trig-no">TRIGGER: Calendly cancellation → GHL webhook</span><br>
+        <span class="trig trig-no">TRIGGER: iClosed no-show/cancellation → Zapier/Make → GHL webhook</span><br>
         GHL Stage → <em>Triage No Show</em> or <em>No Show</em> depending on timing.<br>
         <span class="badge b-slack">#no-show channel</span> alert fires: "Cancelled — Follow up with them ASAP!"<br>
         Setter immediately assigned to call back and attempt rebook.<br>
@@ -770,7 +781,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     <div class="edge-block" style="margin-top:10px; border-color:#1a2a00;">
       <div class="edge-title" style="color:#bef264;">🔄 RESCHEDULE — Co-Host Discovery Call</div>
       <div style="font-size:9.5px; color:#64748b;">
-        <span class="trig trig-res">TRIGGER: Calendly reschedule → GHL Co-Host pipeline update</span><br>
+        <span class="trig trig-res">TRIGGER: iClosed reschedule → Zapier/Make → GHL Co-Host pipeline update</span><br>
         New appointment time saved. All pending sequences cancelled + re-fired from T+0.<br>
         Closer available check: <em>"anyone take a call rn from [closer]'s calendar?"</em> — handled manually via Slack if urgent.<br>
         Terence may be added to WhatsApp conversation for complex state-based questions during reschedule window.
@@ -1011,7 +1022,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     <div style="font-size:10px; color:#94a3b8; line-height:1.7;">
       <span class="trig trig-ghl">GHL TRIGGER: Closed Deal stage</span> → GHL Onboarding Pipeline (MZrnsqA5uMzxPOQcOY0R)<br>
       Welcome SMS + email fires immediately<br>
-      Onboarding call booked (Calendly)<br>
+      Onboarding call booked (iClosed)<br>
       Contract/agreement sent<br>
       GHL Membership → Course portal access granted<br>
       Community access granted (Hylo/Circle)<br>
@@ -1110,19 +1121,19 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
   <div class="int-title">🔗 Full Tech Stack Integration Map — All Data Flows (Both Tracks)</div>
   <div class="int-grid">
     <div class="int-item">
-      <div class="int-ttl">Typeform → GHL (Both tracks)</div>
-      <div class="int-desc">Form submit → webhook → GHL contact. All fields mapped. Qualification logic runs. Fires #new-leads (R2R) or routes to co-host VSL page (DQ).</div>
-      <span class="int-arr">POST webhook on submit → GHL API</span>
+      <div class="int-ttl">iClosed → GHL via Zapier/Make (Both tracks)</div>
+      <div class="int-desc">Lead completes "Complete Quick Application" in iClosed → booking event triggers Zapier or Make → GHL contact created with all fields mapped. Qualification logic runs. Fires #new-leads (R2R) or routes to co-host VSL (DQ). No native iClosed→GHL integration; all bridged through Zapier (connected ✅) or Make (connected ✅).</div>
+      <span class="int-arr">iClosed booking webhook → Zapier/Make → GHL API</span>
     </div>
     <div class="int-item">
-      <div class="int-ttl">Calendly → GHL (R2R close + co-host discovery)</div>
-      <div class="int-desc">Booking confirmed → GHL appointment created. Stage updated. All show-rate SMS/email sequences triggered. Slack alert fires. Reschedule → sequences cancelled + restart.</div>
-      <span class="int-arr">Calendly webhook → GHL appointment API</span>
+      <div class="int-ttl">iClosed → GHL → Slack (Booking + reschedule + no-show)</div>
+      <div class="int-desc">iClosed booking/reschedule/cancellation event → Zapier/Make → GHL appointment updated. Stage updated. iClosed runs its own 14 workflow automations (SMS/email reminders). Slack alerts fire via GHL. Google Calendar synced directly from iClosed (Google Calendar integration ✅). iClosed API keys: Tony, ava, Humayoun, jp, test, Tony v2, dht (7 total).</div>
+      <span class="int-arr">iClosed → Zapier/Make → GHL + direct Google Calendar sync</span>
     </div>
     <div class="int-item">
-      <div class="int-ttl">iClosed → GHL (Call outcomes both tracks)</div>
-      <div class="int-desc">Call disposition → GHL stage update. Triggers relevant automation (close → onboarding / no show → rescue / follow up → new sequences). Closer custom field updated.</div>
-      <span class="int-arr">iClosed disposition → GHL webhook</span>
+      <div class="int-ttl">Dialer.io → GHL (Setter lead management)</div>
+      <div class="int-desc">GHL new lead → Zapier/Make → pushed to Dialer.io list CL-BNB-SUCCESS-NEW-LEADS-5538 (3,410 leads). Escalation: P1 (0–12h, 3 dials) → P2 (12–36h, 3 dials) → P3 (36h+, 14 dials) → Least Priority (continuous). Dispositions: No Contact, Hangup-Intro, Hangup-Warm, F-Demo Booked, DQ-BadFit, DQ-Financial, DQ-NotInterested, DQ-DNC. Setter team: Danny, Noah, Mason, Evan, Bryan, Luke, Toryn, Dane. Old leads: CL-BNB-SUCCESS-OLD-LEADS-5538 (2,405).</div>
+      <span class="int-arr">GHL webhook → Zapier/Make → Dialer.io API (Org ID 537)</span>
     </div>
     <div class="int-item">
       <div class="int-ttl">Fathom → Ava → Slack (R2R + co-host calls)</div>
@@ -1176,7 +1187,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 <div class="int-panel" style="margin-top:14px;">
   <div class="int-title">📊 Key Metrics Tracked — Both Tracks</div>
   <div class="int-grid">
-    <div class="int-item"><div class="int-ttl">R2R CPL / Cost Per Booked Call</div><div class="int-desc">Ad spend ÷ qualified Typeform submits (CPL) and ÷ booked close calls. Tracked per platform, campaign, creative. Source: Hyros + tracking sheet.</div></div>
+    <div class="int-item"><div class="int-ttl">R2R CPL / Cost Per Booked Call</div><div class="int-desc">Ad spend ÷ qualified iClosed opt-ins (CPL) and ÷ booked close calls. Tracked per platform, campaign, creative. Source: Hyros + tracking sheet.</div></div>
     <div class="int-item"><div class="int-ttl">Co-Host Discovery Call Volume</div><div class="int-desc">134 discovery calls booked May 1–13. 27 deep dive / closer calls. Source: GHL Co-Host Pipeline. Ava posts MTD update to Tony on request.</div></div>
     <div class="int-item"><div class="int-ttl">Show Rate (Both Tracks)</div><div class="int-desc">Shown ÷ booked per pipeline. Target &gt;70%. GHL + iClosed disposition data. SMS/email sequences aim to hit this threshold.</div></div>
     <div class="int-item"><div class="int-ttl">Close Rate by Closer (Both Tracks)</div><div class="int-desc">Closed ÷ shown per closer, per pipeline. Fathom + GHL + Airtable EOD. Ava posts weekly scorecard to Tony. Tony coaches from call recordings.</div></div>
@@ -1188,7 +1199,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 </div>
 
 <p style="text-align:center;color:#1e2535;font-size:10px;margin-top:24px;padding-bottom:10px;">
-  BNB Success Internal Only · Ava · v3 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
+  BNB Success Internal Only · Ava · v4 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
 </p>
 
 </body>

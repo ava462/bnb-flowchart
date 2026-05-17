@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BNB Success — Full Lead to Sale Flowchart v4</title>
+<title>BNB Success — Full Lead to Sale Flowchart v5</title>
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
 body {
@@ -279,7 +279,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 <body>
 
 <h1>🏠 BNB Success — Full Lead-to-Sale Flowchart · Both Tracks</h1>
-<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v4.1 May 2026 — incl. exact Zapier ZAP logic</p>
+<p class="subtitle">Rental Arbitrage ($15k) + Co-Hosting Downsell ($5k) · Every trigger, automation, edge case · v5 May 2026 — VSL + Webinar tracks, Pathway Triage, full Zapier ZAP logic</p>
 
 <!-- LEGEND -->
 <div class="legend">
@@ -348,52 +348,87 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 
 
 <!-- ══════════════════════════════════════════════════════════════ -->
-<!-- PHASE 2 — FUNNEL PAGE + VSL (FULL WIDTH) -->
+<!-- PHASE 2 — FUNNEL ENTRY: VSL OR WEBINAR (FULL WIDTH) -->
 <!-- ══════════════════════════════════════════════════════════════ -->
 <div class="phase-row full p-funnel">
-  <div class="phase-label"><div class="pnum">🎬</div>Phase 2<br>Funnel Page<br>&amp; VSL</div>
+  <div class="phase-label"><div class="pnum">🎬</div>Phase 2<br>Funnel<br>Entry<br><span style="font-size:8px;color:#22d3ee">VSL or Webinar</span></div>
   <div class="phase-body full-span">
-    <div class="nodes">
-      <div class="shdr">Main R2R Landing Page — VSL plays, lead decides to apply</div>
+    <div class="shdr">Two distinct funnel entry paths — both flow into the same iClosed application at Phase 3</div>
 
-      <div class="node n-action">
-        <div class="ntitle">🖥️ R2R Landing Page</div>
-        <div class="nbody">
-          Headline + Vturb VSL above fold. CTA: "Apply Now".<br>
-          <span class="trig">TRIGGER: Page Load</span><br>
-          <span class="sig">Meta + TikTok ViewContent pixels fire</span>
-          <span class="sig">Hyros session activated</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <!-- VSL TRACK -->
+      <div style="background:#050e14;border:1px solid #0e3050;border-radius:7px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#22d3ee;margin-bottom:8px;letter-spacing:.5px;">🎥 VSL TRACK (bnbsuccess.com.au)</div>
+        <div class="nodes">
+          <div class="node n-action" style="max-width:none;">
+            <div class="ntitle">🖥️ R2R Landing Page (VSL)</div>
+            <div class="nbody">
+              Headline + Vturb VSL above fold. CTA: "Apply Now".<br>
+              <span class="trig">TRIGGER: Page Load</span><br>
+              <span class="sig">Meta + TikTok ViewContent pixels fire</span>
+              <span class="sig">Hyros session activated</span>
+            </div>
+          </div>
+          <div class="arr" style="transform:rotate(90deg);display:block;text-align:center;margin:4px 0;">→</div>
+          <div class="node n-platform" style="max-width:none;">
+            <div class="ntitle">🎥 Vturb VSL</div>
+            <div class="nbody">
+              <span class="badge b-vturb">VTURB</span><br>
+              Jordan talking head. Apply CTA unlocks at ~70% watch depth.<br>
+              <span class="sig">Apply button appears on player at threshold</span>
+              <span class="sig">Vturb logs watch depth per session</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:9.5px;color:#64748b;">
+          Zapier tag on application: <strong style="color:#22d3ee">"VSL Discovery Call"</strong> — routes to VSL-specific zaps<br>
+          e.g. "VSL Discovery Call Call New Application ($25k)" etc
         </div>
       </div>
-      <div class="arr">→</div>
-      <div class="node n-platform">
-        <div class="ntitle">🎥 Vturb VSL (R2R)</div>
-        <div class="nbody">
-          <span class="badge b-vturb">VTURB</span><br>
-          Jordan talking head. Apply CTA unlocks at ~70% watch.<br>
-          <span class="trig">TRIGGER: 70% Watch Depth</span><br>
-          <span class="sig">Apply button appears on player</span>
-          <span class="sig">Vturb logs watch depth per session</span>
+
+      <!-- WEBINAR TRACK -->
+      <div style="background:#0a0e18;border:1px solid #1a1e40;border-radius:7px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#818cf8;margin-bottom:8px;letter-spacing:.5px;">🎓 WEBINAR TRACK (WebinarJam)</div>
+        <div class="nodes">
+          <div class="node n-platform" style="max-width:none;">
+            <div class="ntitle">📡 WebinarJam Live / Replay</div>
+            <div class="nbody">
+              <span class="badge" style="background:#1a1640;color:#818cf8;border-radius:3px;padding:1px 5px;font-size:9px;font-weight:700;">WEBINARJAM</span><br>
+              Lead registers and attends live or replay webinar.<br>
+              Longer-form educational content before application.<br>
+              <span class="trig">TRIGGER: Attended Webinar event</span><br>
+              <span class="sig">Zapier: WebinarJam Attended → GHL Update + Hyros event</span>
+              <span class="sig">Zap #43: [InfoPros] Webinar Attended → GHL + Webhooks → Hyros</span>
+            </div>
+          </div>
+          <div class="arr" style="transform:rotate(90deg);display:block;text-align:center;margin:4px 0;">→</div>
+          <div class="node n-action" style="max-width:none;">
+            <div class="ntitle">📋 Apply CTA (in Webinar)</div>
+            <div class="nbody">
+              CTA delivered during webinar: "Click apply below to get started".<br>
+              Links to same iClosed "Complete Quick Application".<br>
+              <span class="sig">Lower friction — already warmed up from 60–90 min webinar</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="arr">→</div>
-      <div class="node n-decision">
-        <div class="ntitle">🤔 Did they click Apply?</div>
-        <div class="nbody">Watches VSL → clicks CTA or bounces.</div>
+        <div style="margin-top:8px;font-size:9.5px;color:#64748b;">
+          Zapier tag on application: <strong style="color:#818cf8">"Webinar Discovery Call"</strong> — routes to Webinar-specific zaps<br>
+          e.g. "Webinar Discovery Call Call New Application ($15k–$25k)" etc
+        </div>
       </div>
     </div>
+
     <div class="fork">
-      <div class="fb fb-yes">
-        <span class="flabel">✅ Clicked Apply → Phase 3 iClosed Application</span>
-        Proceeds to "Complete Quick Application" (iClosed) →
+      <div class="fb fb-yes" style="flex:2">
+        <span class="flabel">✅ Applied (Either Track) → Phase 3 iClosed</span>
+        iClosed "Complete Quick Application" form loads → same routing from here regardless of entry path
       </div>
-      <div class="fb fb-no" style="flex:1.5">
-        <span class="flabel">❌ Bounced / Partial Watch</span>
+      <div class="fb fb-no" style="flex:2">
+        <span class="flabel">❌ Bounced / Didn't Apply</span>
         <span class="trig trig-no">TRIGGER: No submit + session ended</span><br>
-        <span class="badge b-meta">META</span> added to "VSL View No Action" custom audience<br>
+        <span class="badge b-meta">META</span> added to "VSL View No Action" audience<br>
         <span class="badge b-tiktok">TIKTOK</span> pixel audience updated<br>
-        → Re-targeted with testimonial / objection-busting creative<br>
-        → 3–7 day window → re-enters Phase 2 if clicked
+        → Retargeted with testimonial / objection-busting creative → re-enters Phase 2 if clicked
       </div>
     </div>
   </div>
@@ -416,11 +451,15 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
           <span class="badge b-iclosed" style="background:#6d28d9;color:#fff;border-radius:3px;padding:1px 5px;font-size:9px;font-weight:700;">iCLOSED</span><br>
           Event: "Complete Quick Application" (15 min). Name, email, phone, AUS/NZ state, capital, employment, income, timeline, goals.<br>
           <span class="trig">TRIGGER: Form Submitted (iClosed)</span><br>
-          <span class="sig">Zapier/Make: iClosed → GHL contact created</span>
-          <span class="sig">Hyros lead event fires (iClosed Hyros integration ✅)</span>
+          <span class="sig">Zapier: iClosed Contact Status Updated → filter (capital + event name) → GHL Add to Workflow</span>
+          <span class="sig">Capital bands: Under $10k / $10k–$15k / $15k–$25k / $25k+ → separate GHL workflows each</span>
+          <span class="sig">VSL vs Webinar source preserved in Zapier filter (event name slug)</span>
+          <span class="sig">Hyros lead event fires (native iClosed → Hyros integration ✅)</span>
           <span class="sig">Meta Pixel Lead event fires</span>
           <span class="sig">iClosed SMS Confirmation fires immediately (Workflow #6)</span>
           <span class="sig">iClosed 24h / 1h / 5min email + SMS reminders scheduled (Workflows #5,#11,#12,#13,#14)</span>
+          <br><strong style="color:#fcd34d">iClosed Events (11 total):</strong><br>
+          Discovery Call (15min) · Deep Dive (Group A/B/C, 60min) · Pathway Triage (new) · Co-Host Discovery Call · Co-Host Closer Call · Complete Quick Application
         </div>
       </div>
       <div class="arr">→</div>
@@ -468,7 +507,8 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
           <strong>WA, SA + high intent</strong><br>
           WA: co-host preferred OR R2R if intent very high<br>
           Existing property owners → co-host recommended regardless<br>
-          → Setter/closer judgment call
+          → Setter/closer judgment call<br>
+          <strong style="color:#fcd34d">Pathway Triage</strong>: edge case bookings routed to "Pathway Triage" iClosed event → GHL "BNB Pathway Call | Booking Confirmed Flow"
         </div>
       </div>
     </div>
@@ -540,11 +580,32 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
       </div>
     </div>
 
-    <div class="fork">
+    <!-- INDIVIDUAL SETTER ZAPIER ROUTING -->
+    <div style="margin-top:12px;background:#050e14;border:1px solid #0e3050;border-radius:7px;padding:12px;">
+      <div style="font-size:9.5px;font-weight:800;color:#38bdf8;margin-bottom:8px;">📡 Zapier Setter Assignment — "Assign To Setters" folder (16 zaps)</div>
+      <div style="font-size:9px;color:#64748b;line-height:1.8;">
+        When a booking is created, <strong>one Zapier zap per setter per funnel type fires</strong> to assign the lead in GHL:<br>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;">
+          <div style="background:#07080e;border:1px solid #0e1a28;border-radius:4px;padding:6px;">
+            <strong style="color:#60a5fa">VSL Track Setters:</strong><br>
+            Bryan (VSL) · Cruz (VSL) · Dane (VSL) · Danny (VSL) · Evan (VSL) · Luke (VSL) · Mason (VSL) · Toryn (VSL)
+          </div>
+          <div style="background:#07080e;border:1px solid #0e1a28;border-radius:4px;padding:6px;">
+            <strong style="color:#818cf8">Webinar Track Setters:</strong><br>
+            Bryan (Webinar) · Cruz (Webinar) · Dane (Webinar) · Danny (Webinar) · Evan (Webinar) · Luke (Webinar) · Mason (Webinar) · Toryn (Webinar)
+          </div>
+        </div>
+        <div style="margin-top:6px;">
+          Pattern: <code style="background:#0a1020;padding:1px 4px;border-radius:3px;color:#22d3ee">iClosed — New Call Scheduled → [Filter: setter name + funnel type] → GHL — Add Contact to Campaign/Workflow</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="fork" style="margin-top:12px;">
       <div class="fb fb-yes">
         <span class="flabel">✅ Books Close Call (Disposition: F-Demo Booked)</span>
         <span class="grp ga">GROUP A</span><span class="grp gb">GROUP B</span><span class="grp gc">GROUP C</span><br>
-        Setter books via iClosed: <strong>Deep Dive Call (A/B/C)</strong> or <strong>Discovery Call</strong> (60 or 15 min)<br>
+        Setter books via iClosed: <strong>Deep Dive Call (A/B/C)</strong> or <strong>Discovery Call</strong> (60 or 15 min) or <strong>Pathway Triage</strong><br>
         Dialer.io disposition → <em>"F - Demo Booked"</em><br>
         iClosed → GHL via Zapier/Make: Stage → <em>Booked Appointment</em><br>
         <span class="badge b-slack">SLACK #booked-call</span> fires<br>
@@ -1145,7 +1206,18 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
         • Discovery/Closer cancelled → GHL Wf: "iClosed - Triage Call | Booking Cancelled"<br>
         <br>
         Each zap passes: First Name, Last Name, Phone, Email, State, Capital, Timeline, Job, Closer Name, Appointment Start Time.<br>
-        Zapier account: Terence Mok (TM). 74 total zaps. Account ID: 21670532.
+        <br>
+        <strong style="color:#fcd34d">PATHWAY TRIAGE ZAP</strong><br>
+        • Pathway Triage iClosed Call Booked → GHL Wf: "BNB Pathway Call | Booking Confirmed Flow"<br>
+        • Pathway Triage cancelled → GHL Wf: "iClosed - Triage Call | Booking Cancelled"<br>
+        <br>
+        <strong style="color:#818cf8">WEBINAR APPLICATION ZAPS (trigger: iClosed Contact by Status — Webinar source)</strong><br>
+        • Capital &lt;$10k → GHL Wf: "Webinar iClosed Application → Investment Pipeline (Under $10k)"<br>
+        • Capital $10k-$15k → GHL Wf: "Webinar iClosed Application → Investment Pipeline ($10k-$15k)"<br>
+        • Capital $15k-$25k → GHL Wf: "Webinar iClosed Application → Investment Pipeline ($15k-$25k)"<br>
+        • Capital $25k+ → GHL Wf: "Webinar iClosed Application → Investment Pipeline ($25k+)"<br>
+        <br>
+        Zapier account: Terence Mok (TM). 75 total zaps. Account ID: 21670532.
       </div>
       <span class="int-arr">iClosed event → Zapier filter (event slug/name) → GHL LeadConnector "Add Lead to Workflow"</span>
     </div>
@@ -1223,7 +1295,7 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 </div>
 
 <p style="text-align:center;color:#1e2535;font-size:10px;margin-top:24px;padding-bottom:10px;">
-  BNB Success Internal Only · Ava · v4.1 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · iClosed · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase
+  BNB Success Internal Only · Ava · v5 May 2026 · R2R ($15k) + Co-Host Downsell ($5k) · VSL + Webinar Tracks · iClosed (11 events) · Dialer.io · Fathom · GHL · Hyros · Whop · Skool · Airtable · Stripe · Supabase · Zapier (75 zaps)
 </p>
 
 </body>

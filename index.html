@@ -10,11 +10,13 @@ body {
   background:#08090d;
   color:#e2e8f0;
   font-family:'Segoe UI',system-ui,sans-serif;
-  padding:32px 20px 80px;
-  min-width:1600px;
+  padding:40px 24px 80px;
+  min-width:1200px;
+  max-width:1800px;
+  margin:0 auto;
 }
 
-h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bottom:4px; }
+h1 { text-align:center; font-size:28px; font-weight:800; color:#fff; margin-bottom:6px; }
 .subtitle { text-align:center; color:#64748b; font-size:11px; margin-bottom:28px; }
 
 /* ── LEGEND ── */
@@ -274,6 +276,56 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 
 /* phase number label */
 .pnum { font-size:15px; margin-bottom:2px; }
+
+/* ── CENTERED PRE-SPLIT PHASES ── */
+.phase-centered {
+  display:flex;
+  flex-direction:row;
+  align-items:stretch;
+  max-width:1200px;
+  margin:0 auto 2px;
+  border-radius:10px;
+  overflow:hidden;
+}
+.phase-centered .phase-label {
+  min-width:130px;
+  border-radius:8px 0 0 8px;
+}
+.phase-centered .phase-body-wide {
+  flex:1;
+  padding:20px 28px;
+  border-left:3px solid;
+  border-radius:0 8px 8px 0;
+}
+.phase-centered .nodes {
+  justify-content:center;
+}
+.phase-centered .node {
+  min-width:200px;
+  max-width:280px;
+  font-size:11px;
+}
+.phase-centered .node .ntitle { font-size:12px; }
+.phase-centered .shdr { text-align:center; }
+.phase-centered .fork { max-width:900px; margin:14px auto 0; }
+
+.vconn-centered {
+  display:flex;
+  justify-content:center;
+  height:28px;
+}
+.vconn-centered-line {
+  display:flex; align-items:center; padding:0 0 0 26px; position:relative;
+  min-width:260px;
+}
+.vconn-centered-line::before { content:''; display:block; width:2px; height:28px; background:linear-gradient(180deg,#2d3748,#1a202c); }
+.vconn-centered-line::after { content:'▼'; position:absolute; left:20px; bottom:-4px; color:#374151; font-size:10px; }
+
+/* Wider grid panel for centered phases */
+.phase-centered .state-matrix {
+  max-width:860px;
+  margin:10px auto 0;
+}
 </style>
 </head>
 <body>
@@ -304,11 +356,11 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 
 
 <!-- ══════════════════════════════════════════════════════════════ -->
-<!-- PHASE 1 — ADS + TRAFFIC (FULL WIDTH) -->
+<!-- PHASE 1 — ADS + TRAFFIC (CENTERED PRE-SPLIT) -->
 <!-- ══════════════════════════════════════════════════════════════ -->
-<div class="phase-row full p-ads">
+<div class="phase-centered p-ads">
   <div class="phase-label"><div class="pnum">📢</div>Phase 1<br>Ad<br>Exposure</div>
-  <div class="phase-body full-span">
+  <div class="phase-body-wide" style="border-color:#7c3aed;background:rgba(124,58,237,.05);">
     <div class="nodes">
       <div class="shdr">Traffic Sources — Both tracks start here. Same ads feed both funnels.</div>
 
@@ -344,15 +396,15 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     </div>
   </div>
 </div>
-<div class="vconn"><div></div><div class="vconn-line"></div></div>
+<div class="vconn-centered"><div class="vconn-centered-line"></div></div>
 
 
 <!-- ══════════════════════════════════════════════════════════════ -->
-<!-- PHASE 2 — FUNNEL ENTRY: VSL OR WEBINAR (FULL WIDTH) -->
+<!-- PHASE 2 — FUNNEL ENTRY: VSL OR WEBINAR (CENTERED PRE-SPLIT) -->
 <!-- ══════════════════════════════════════════════════════════════ -->
-<div class="phase-row full p-funnel">
+<div class="phase-centered p-funnel">
   <div class="phase-label"><div class="pnum">🎬</div>Phase 2<br>Funnel<br>Entry<br><span style="font-size:8px;color:#22d3ee">VSL or Webinar</span></div>
-  <div class="phase-body full-span">
+  <div class="phase-body-wide" style="border-color:#0ea5e9;background:rgba(14,165,233,.05);">
     <div class="shdr">Two distinct funnel entry paths — both flow into the same iClosed application at Phase 3</div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
@@ -433,15 +485,15 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
     </div>
   </div>
 </div>
-<div class="vconn"><div></div><div class="vconn-line"></div></div>
+<div class="vconn-centered"><div class="vconn-centered-line"></div></div>
 
 
 <!-- ══════════════════════════════════════════════════════════════ -->
-<!-- PHASE 3 — APPLICATION + QUALIFY (FULL → SPLITS HERE) -->
+<!-- PHASE 3 — APPLICATION + QUALIFY (CENTERED → SPLITS HERE) -->
 <!-- ══════════════════════════════════════════════════════════════ -->
-<div class="phase-row full p-qualify">
+<div class="phase-centered p-qualify">
   <div class="phase-label"><div class="pnum">📋</div>Phase 3<br>Application<br>&amp; Qualify<br><span style="font-size:8px;color:#fbbf24">↕ SPLIT POINT</span></div>
-  <div class="phase-body full-span">
+  <div class="phase-body-wide" style="border-color:#d97706;background:rgba(217,119,6,.05);">
     <div class="nodes">
       <div class="shdr">iClosed "Complete Quick Application" — 15-min intake form where the two tracks diverge based on capital + location</div>
 
@@ -534,13 +586,12 @@ h1 { text-align:center; font-size:23px; font-weight:800; color:#fff; margin-bott
 </div>
 
 <!-- TRACK DIVIDER LABEL ROW -->
-<div style="height:14px;"></div>
-<div class="track-divider">
-  <div class="td-space"></div>
-  <div class="td-r2r">🏠 R2R TRACK — Rental Arbitrage $15,000 AUD</div>
-  <div class="td-co">🤝 CO-HOSTING DOWNSELL TRACK — $5,000 AUD</div>
+<div style="height:18px;"></div>
+<div style="display:flex;gap:12px;max-width:1200px;margin:0 auto;">
+  <div class="td-r2r" style="flex:1;text-align:center;padding:8px 16px;font-size:10px;">🏠 R2R TRACK — Rental Arbitrage $15,000 AUD</div>
+  <div class="td-co" style="flex:1;text-align:center;padding:8px 16px;font-size:10px;">🤝 CO-HOSTING DOWNSELL TRACK — $5,000 AUD</div>
 </div>
-<div style="height:4px;"></div>
+<div style="height:6px;"></div>
 
 
 <!-- ══════════════════════════════════════════════════════════════ -->
